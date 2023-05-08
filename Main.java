@@ -172,22 +172,22 @@ public class Main {
         }
 
         /* Visualize */
-        for (int i = 0, classes = (1 << numClasses) - 1; i < TIME_SLOTS; ++i) {
-            BestGuess bestGuess = optimizer.memo.get(classes);
+        for (int i = 0, classesSubset = (1 << numClasses) - 1; i < TIME_SLOTS; ++i) {
+            BestGuess bestGuess = optimizer.memo.get(classesSubset);
             System.out.print(salsaNames[bestGuess.timeSlot[SALSA_TYPE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[SALSA_TYPE_ID]] +  ")" + "\t\t");
             System.out.print(bachataNames[bestGuess.timeSlot[BACHATA_TYPE_ID]] + "(" + bachataVotes[bestGuess.timeSlot[BACHATA_TYPE_ID]] +  ")" + "\t\t");
             System.out.print(discoveryNames[bestGuess.timeSlot[DISCOVERY_TYPE_ID]] + "(" + discoveryVotes[bestGuess.timeSlot[DISCOVERY_TYPE_ID]] +  ")" + "\t\t");
             if (bestGuess.timeSlot[EXTRA_SALSA_TYPE_ID] >= 0) {
                 System.out.print(salsaNames[bestGuess.timeSlot[EXTRA_SALSA_TYPE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[EXTRA_SALSA_TYPE_ID]] +  ")" + "\t\t");
-                classes -= 1 << (bachataVotes.length + discoveryVotes.length + bestGuess.timeSlot[EXTRA_SALSA_TYPE_ID]);
+                classesSubset -= 1 << (bachataVotes.length + discoveryVotes.length + bestGuess.timeSlot[EXTRA_SALSA_TYPE_ID]);
             } else if (bestGuess.timeSlot[EXTRA_BACHATA_TYPE_ID] >= 0) {
                 System.out.print(bachataNames[bestGuess.timeSlot[EXTRA_BACHATA_TYPE_ID]] + "(" + bachataVotes[bestGuess.timeSlot[EXTRA_BACHATA_TYPE_ID]] +  ")" + "\t\t");
-                classes -= 1 << (discoveryVotes.length + bestGuess.timeSlot[EXTRA_BACHATA_TYPE_ID]);
+                classesSubset -= 1 << (discoveryVotes.length + bestGuess.timeSlot[EXTRA_BACHATA_TYPE_ID]);
             }
             System.out.println(optimizer.computeSimilarity(bestGuess.timeSlot) + "%");
-            classes -= 1 << (bachataVotes.length + discoveryVotes.length + bestGuess.timeSlot[SALSA_TYPE_ID]);
-            classes -= 1 << (discoveryVotes.length + bestGuess.timeSlot[BACHATA_TYPE_ID]);
-            classes -= 1 << bestGuess.timeSlot[DISCOVERY_TYPE_ID];
+            classesSubset -= 1 << (bachataVotes.length + discoveryVotes.length + bestGuess.timeSlot[SALSA_TYPE_ID]);
+            classesSubset -= 1 << (discoveryVotes.length + bestGuess.timeSlot[BACHATA_TYPE_ID]);
+            classesSubset -= 1 << bestGuess.timeSlot[DISCOVERY_TYPE_ID];
         }
     }
 
@@ -228,17 +228,17 @@ public class Main {
             System.out.println("--- Average " + target);
         }
 
-        float solve(int timeSlotId, int classes, boolean isExtraSalsaInPreviousSlot, boolean isExtraBachataInPreviousSlot) {
+        float solve(int timeSlotId, int classesSubset, boolean isExtraSalsaInPreviousSlot, boolean isExtraBachataInPreviousSlot) {
             if (timeSlotId >= TIME_SLOTS) { // Base case
-                boolean allClassesOnSchedule = classes == 0;
+                boolean allClassesOnSchedule = classesSubset == 0;
                 return allClassesOnSchedule ? 0.0f : INFINITY;
             }
-            BestGuess ans = memo.get(classes);
+            BestGuess ans = memo.get(classesSubset);
             if (ans != null) {
                 return ans.score;
             }
-            ans = guess(timeSlotId, 0, classes, new int[NUM_DANCE_TYPES], isExtraSalsaInPreviousSlot, isExtraBachataInPreviousSlot);
-            memo.put(classes, ans);
+            ans = guess(timeSlotId, 0, classesSubset, new int[NUM_DANCE_TYPES], isExtraSalsaInPreviousSlot, isExtraBachataInPreviousSlot);
+            memo.put(classesSubset, ans);
             return ans.score;
         }
 
