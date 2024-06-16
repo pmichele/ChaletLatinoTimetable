@@ -204,6 +204,8 @@ public class Main {
         duties[4] = Set.of(43, 7, 21, 18);
         duties[5] = Set.of();
         duties[6] = Set.of(4, 5, 8, 15);
+
+        /* Teaching duties */
         List<Integer>[] salsaProfs = new List[salsaNames.length],
                 bachataProfs = new List[bachataNames.length],
                 discoveryProfs = new List[discoveryNames.length];
@@ -235,8 +237,8 @@ public class Main {
         }
         sameProfSalsaToBachata[2] = Arrays.asList(3); // Larissa teaches 1 bachata
         sameProfSalsaToDiscovery[1] = Arrays.asList(0, 1); // Ilaria does 2 initiations
-        sameProfSalsaToDiscovery[3] = Arrays.asList(3); // angelica
-        sameProfSalsaToDiscovery[4] = Arrays.asList(3); // angelica
+        sameProfSalsaToDiscovery[3] = Arrays.asList(3); // angelica does rumba
+        sameProfSalsaToDiscovery[4] = Arrays.asList(3); // angelica does rumba
 
 
         // 2. Profs on duties constraints
@@ -600,7 +602,7 @@ public class Main {
                 }
             }
             if (isSalsaInA && timeSlot[CLASSROOM_A_ID] == STYLING && timeSlotId != STYLING_TIME) {
-//                loss += 100000;
+                loss += 100000;
             }
 
             /* Hyperparameters for soft constraints*/
