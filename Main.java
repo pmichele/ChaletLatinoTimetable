@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -13,133 +12,303 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Main {
 
-    static final int TIME_SLOTS = 7, CLASSROOM_A_ID = 0, CLASSROOM_B_ID = 1, NUM_CLASSROOMS = 2, NO_CLASS = -1;
+    static final int TIME_SLOTS = 7, CLASSROOM_ONE_ID = 0, CLASSROOM_TWO_ID = 1, CLASSROOM_THREE_ID = 2, NUM_CLASSROOMS = 3, NO_CLASS = -1;
     static final float INFINITY = Integer.MAX_VALUE, SCORE_LIMIT = 1_000_000_000.0f;
 
     /* Dataset */
 
     static String[] salsaClasses = new String[] {
-            "Salsa fusion by P.A. y Este",
-            "Arm work salsa Fusion by Ilaria y Harshit",
-            "Salsa all style by Caroline y Larissa",
-            "Pasitos salsa con afro by Angelica Fino",
-            "Lady Styling by Angelica Fino (man vs girl) / Man Styling by P.A. (man vs girl)"
+            "Salsa pasitos afro-rumba (Advanced)  —  Ila",
+            "Salsa urban style (Advanced) — PA y Ila",
+            "Salsa musicality: catching breaks (Intermediate) — Skander y Maja",
+            "Salsa partnerwork (Intermediate) — Valentin y Lison",
+            "Salsa fusion (Advanced) — PA y Este",
+            "Salsa men vs lady styling battle (Intermediate) — PA y Este",
+            "Salsa leading and following (Intermediate) — Robin y Marla",
+            "Salsa partnerwork (Intermediate) — Robin y Kai"
     };
     static String[] bachataClasses = new String[] {
-            "Bachata moderne by Patrick y Sofia",
-            "Breaks and musicality partner work by Patrick",
-            "Smooth transitions by Thanu y Sofia",
-            "Sensual couple connection by Thanu y Larissa"
+            "Bachata fusion (Advanced) — Lison y Patrick",
+            "Bachata musicality parterwork (Intermediate) — Patrick",
+            "Bachata sensual 1 (Intermediate) — Boris y Teya",
+            "Bachata sensual 2 (Advanced) — Boris y Teya",
+            "Bachata footwork (Intermediate) — Yoss y Morgana",
+            "Bachata moderna (Intermediate) — Yoss y Morgana",
+            "Bachata sensual connection (Advanced) — Yoss y Morgana"
     };
     static String[] discoveryClasses = new String[] {
-            "Reggaetton fusion by Ilaria",
-            "Hip Hop by Ilaria",
-            "Zouk Flow Introduction by Thanu y Julie",
-            "Rumba by Angelica Fino"
+            "Hip hop (All levels) — Ila",
+            "Reggaeton (All levels) — Ila",
+            "Jive (All levels) — Lison y Luca",
+            "Samba (All levels) — Virginia",
+            "Cha-Cha-Cha (All levels) — Heidi y Dennis",
+            "Salsa caleña (All levels) — Luca"
     };
+    //TODO
 
-    static String[] participants = new String[] {
-            "",
-            "",
-            "Ilaria Ricchi",
-            "Angelica Fino",
-            "Tessa Rougemont",
-            "Matteo Mancuso",
-            "Caroline Schmitt",
-            "Léa Consuegra",
-            "Nathalie Aney Guzmán Santa Cruz",
-            "Richard Santiago",
-            "Maja Stamenkovic",
-            "Célina Marques",
-            "Mariona Lopez GIl",
-            "Ruth Díaz",
-            "Thierry ",
-            "Felix Hans Michel Grimberg ",
-            "Balsiger Gloria ",
-            "Sofia Echevarria",
-            "Laurent Bugnard",
-            "Igor Krawczuk ",
-            "Léonore Baumann",
-            "Matthieu Stigler",
-            "Skander Moalla",
-            "Miriam Pougin ",
-            "Sonja Hirt",
-            "Larissa Schuh",
-            "Svitlana Mykolenko",
-            "Emma Favrod",
-            "Harshit Khurana",
-            "Milena Schuhmacher ",
-            "Florent GIFFON ",
-            "Valentin Gobert",
-            "Miguel Basante Bedoya ",
-            "Thomas Stutz ",
-            "Thanushan Kugathasan",
-            "Patrick Sgrò ",
-            "Michele Pettinato",
+    static String[] participants = {
+            "Adrian Pfiffner",
+            "Marc Blöchlinger",
             "P.A.",
+            "Léa Consuegra",
+            "Julie Hernandez",
+            "Mariana Leon",
+            "Laurine Gasser",
+            "Laurent Bugnard",
+            "Noa Varela Cinquegrani",
+            "Milena Schuhmacher",
+            "Annamira O'Toole",
+            "Ilaria Ricchi",
+            "Kaisu Hiltunen",
+            "Kai Ott",
+            "Ruef Luca",
+            "Lison Ravassard",
+            "Larissa Klose",
+            "Jose Antonio Simon Greminger",
+            "Ivan Zivadinovic",
+            "Skander Moalla",
+            "Richard Santiago",
+            "Michele Pettinato",
+            "Yannick",
+            "Jusef Akbari",
+            "Chloé Monin",
+            "Fabian Weber",
+            "Elena Yfantis",
+            "David Barioni",
+            "Sabrina Kleesattel",
+            "Carolin Giel",
+            "Catarina Meier",
+            "Maja Stamenkovic",
+            "Mélanie",
+            "Patrick",
+            "Igor",
+            "Olivier",
+            "Boris",
+            "Yoss",
             "Estefania Arroyo",
-            "Julie Hernandez ",
-            "Sebastian Santos",
-            "Alice Moraz",
-            "Heidi Lee",
-            "Hayoz Charly",
-            "Tristan Reinhard"
+            "Teya Petrova",
+            "Alic",
+            "Helen",
+            "Diego",
+            "Valentin Gobert",
+            "Florent",
+            "Morgana",
+            "Daniela C",
+            "Matthieu Stigler",
+            "Natali Gomez",
+            "Ulysse Matthey",
+            "Heidi",
+            "Tristan",
+            "Dennis",
+            "Robin R",
+            "Marla",
+            "Merel K",
+            "Céline Wilhelm",
+            "Alberto Zirondelli",
+            "Sandra Valero",
+            "Claudia",
+            "Niál Perry",
     };
 
-    // Note: I removed profs who voted for themselves to prioritize the classes they actually want to do
-    static String[] participantsChoices = new String[] {
-            "", // shift to match excel spreadsheet ids
-            "", // shift to match excel spreadsheet ids
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este, Rumba by Angelica Fino",
-            "", // angelica
-            "Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Hip Hop by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Arm work salsa Fusion by Ilaria y Harshit,Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino,Bachata moderne by Patrick y Sofia,Rumba by Angelica Fino",
-            "Pasitos salsa con afro by Angelica Fino, Salsa fusion by P.A. y Este,Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick,Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Smooth transitions by Thanu y Sofia,Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Hip Hop by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Smooth transitions by Thanu y Sofia,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa",
-            "Lady Styling by Angelica Fino (man vs girl), Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa",
-            "Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit,Sensual couple connection by Thanu y Larissa",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Arm work salsa Fusion by Ilaria y Harshit,Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este,Bachata moderne by Patrick y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit,Breaks and musicality partner work by Patrick,Rumba by Angelica Fino",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Salsa all style by Caroline y Larissa,Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria",
-            "Lady Styling by Angelica Fino (man vs girl), Salsa all style by Caroline y Larissa,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este,Sensual couple connection by Thanu y Larissa,Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl),Rumba by Angelica Fino",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Arm work salsa Fusion by Ilaria y Harshit,Breaks and musicality partner work by Patrick,Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Breaks and musicality partner work by Patrick, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl),Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino,Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Arm work salsa Fusion by Ilaria y Harshit,Bachata moderne by Patrick y Sofia, Smooth transitions by Thanu y Sofia,Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit,Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia,Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Breaks and musicality partner work by Patrick, Rumba by Angelica Fino, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl),Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit,Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Rumba by Angelica Fino, Hip Hop by Ilaria, Reggaetton fusion by Ilaria",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl),Rumba by Angelica Fino",
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este,Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Hip Hop by Ilaria, Reggaetton fusion by Ilaria",
-            "", // seb
-            "Pasitos salsa con afro by Angelica Fino, Lady Styling by Angelica Fino (man vs girl), Salsa fusion by P.A. y Este, Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa,Hip Hop by Ilaria, Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Lady Styling by Angelica Fino (man vs girl), Arm work salsa Fusion by Ilaria y Harshit, Salsa all style by Caroline y Larissa,Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Sensual couple connection by Thanu y Larissa,Reggaetton fusion by Ilaria, Zouk Flow Introduction by Thanu y Julie",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl),Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa",
-            "Pasitos salsa con afro by Angelica Fino, Man Styling by P.A. (man vs girl), Salsa fusion by P.A. y Este, Salsa all style by Caroline y Larissa, Bachata moderne by Patrick y Sofia, Breaks and musicality partner work by Patrick, Smooth transitions by Thanu y Sofia, Sensual couple connection by Thanu y Larissa"
+
+    static boolean[][] participantsSalsaChoices = {
+            {true,  true,  true,  false, false, false, false, false},
+            {false, false, true,  true,  false, false, true,  true },
+            {false, true,  false, false, true,  true,  false, false},
+            {true,  true,  true,  false, true,  false, false, false},
+            {false, false, false, false, false, false, false, false},
+            {true,  false, true,  true,  false, true,  false, false},
+            {false, false, false, true,  false, false, false, false},
+            {true,  false, true,  true,  false, false, false, false},
+            {false, false, false, false, true,  true,  false, false},
+            {true,  true,  false, false, false, false, false, false},
+            {false, false, true,  true,  false, false, true,  true },
+            {true,  true,  false, false, true,  false, false, false},
+            {false, false, false, true,  false, true,  false, false},
+            {true,  false, false, false, false, false, false, false},
+            {false, false, false, true,  false, true,  false, false},
+            {false, false, false, true,  false, false, false, false},
+            {true,  false, true,  false, false, false, false, false},
+            {true,  false, true,  false, false, true,  false, false},
+            {false, false, true,  true,  false, false, true,  true },
+            {true,  false, true,  false, false, true,  false, false},
+            {true,  false, true,  true,  false, false, true,  true },
+            {true,  true,  false, false, false, true,  false, false},
+            {true,  false, true,  false, false, false, false, false},
+            {false, false, false, false, true,  false, false, true },
+            {false, false, false, false, true,  true,  false, false},
+            {false, false, true,  false, true,  false, false, true },
+            {false, false, false, false, true,  false, false, true },
+            {false, false, false, false, false, true,  false, false},
+            {false, false, false, false, true,  false, false, true },
+            {false, false, true,  true,  false, false, true,  false},
+            {true,  true,  false, false, true,  false, false, false},
+            {true,  true,  true,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+    };
+    static boolean[][] participantsBachataChoices = {
+            {true,  false, true,  false, false, false, false},
+            {false, false, false, false, false, false, false},
+            {false, false, false, false, false, false, false},
+            {false, false, false, false, true,  false, false},
+            {true,  false, false, false, true,  true,  false},
+            {false, false, true,  false, false, false, false},
+            {false, true,  true,  false, true,  false, false},
+            {false, false, true,  false, true,  true,  false},
+            {false, true,  true,  false, false, false, false},
+            {false, true,  false, false, true,  true,  false},
+            {false, true,  false, false, true,  false, false},
+            {false, false, false, false, false, false, false},
+            {false, false, true,  true,  true,  true,  false},
+            {true,  false, true,  true,  false, false, false},
+            {false, false, false, false, false, false, false},
+            {true,  false, false, true,  false, false, false},
+            {false, true,  false, false, true,  false, false},
+            {false, true,  true,  false, true,  false, false},
+            {false, false, false, false, false, false, false},
+            {false, true,  true,  false, false, false, false},
+            {false, false, false, false, false, false, false},
+            {false, false, false, false, false, false, false},
+            {false, true,  false, false, true,  false, false},
+            {true,  false, true,  true,  false, false, false},
+            {false, false, false, true,  true,  false, false},
+            {false, false, true,  true,  false, false, false},
+            {true,  false, true,  true,  false, false, false},
+            {false, false, false, false, false, false, false},
+            {true,  false, true,  true,  false, false, false},
+            {false, true,  true,  false, true,  false, false},
+            {true,  false, false, false, true,  false, false},
+            {false, false, false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+    };
+
+    static boolean[][] participantsDiscoveryChoices = {
+            {false, false, false, false, false, false},
+            {true,  true,  false, false, false, false},
+            {true,  false, false, false, false, false},
+            {false, true,  false, false, true,  true},
+            {false, false, false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, true,  true,  false, false, false},
+            {true,  true,  false, false, false, true},
+            {false, false, false, false, false, false},
+            {true,  true,  false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, true,  false, false, false, false},
+            {false, false, true,  false, false, true},
+            {false, false, true,  false, false, false},
+            {false, false, false, true,  true,  false},
+            {false, true,  false, true,  false, true},
+            {false, true,  false, false, false, true},
+            {true,  true,  false, false, false, false},
+            {false, false, false, false, false, false},
+            {true,  true,  false, true,  false, true},
+            {false, false, false, true,  true,  true},
+            {false, true,  false, false, false, false},
+            {true,  true,  false, true,  false, false},
+            {false, false, false, false, true,  false},
+            {false, true,  false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, true,  false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, true,  false, false, false, false},
+            {false, false, true,  true,  true,  true},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
+            {false,  false,  false,  false, false, false, false, false},
     };
 
     static int[] salsaVotes;
     static int[] bachataVotes;
     static int[] discoveryVotes;
 
-    static int salsaStylingId = 4; // see salsaNames[salsaStylingId]
+    static int[] howManyChoices;
+
+    static int salsaStylingId = 5; // see salsaClasses[salsaStylingId]
 
     public static void main(String[] args) {
 
@@ -147,38 +316,64 @@ public class Main {
         bachataVotes = new int[bachataClasses.length];
         discoveryVotes = new int[discoveryClasses.length];
 
-        /* People on duties (kitchen) */
+        /* People on duties (kitchen). They should be 5 on 1 4 and 6 */
+        // TODO
         Set<Integer>[] duties = new Set[TIME_SLOTS];
         duties[0] = Set.of();
-        duties[1] = Set.of(28, 42, 32, 44);
+        duties[1] = Set.of(5, 6, 27);
         duties[2] = Set.of();
         duties[3] = Set.of();
-        duties[4] = Set.of(43, 7, 21, 18);
+        duties[4] = Set.of(3, 39);
         duties[5] = Set.of();
-        duties[6] = Set.of(4, 5, 8, 15);
+        duties[6] = Set.of(23, 28, 26, 52);
 
         /* Teaching duties */
+        //TODO
         List<Integer>[] salsaProfs = new List[salsaClasses.length],
                 bachataProfs = new List[bachataClasses.length],
                 discoveryProfs = new List[discoveryClasses.length];
         // see participantNames for the name of the profs
-        final int PATRICK = 35;
-        salsaProfs[0] = List.of(37, 38);
-        salsaProfs[1] = List.of(2, 28);
-        salsaProfs[2] = List.of(6, 25);
-        salsaProfs[3] = List.of(3);
-        salsaProfs[4] = List.of(3, 37);
-        bachataProfs[0] = List.of(PATRICK, 17);
+        final int PATRICK = 33;
+        salsaProfs[0] = List.of(11);
+        salsaProfs[1] = List.of(11, 2);
+        salsaProfs[2] = List.of(19, 31);
+        salsaProfs[3] = List.of(43, 15);
+        salsaProfs[4] = List.of(38, 2);
+        salsaProfs[5] = List.of(38, 2);
+        salsaProfs[6] = List.of(53, 54);
+        salsaProfs[7] = List.of(53, 13);
+        bachataProfs[0] = List.of(15, PATRICK);
         bachataProfs[1] = List.of(PATRICK);
-        bachataProfs[2] = List.of(34, 17);
-        bachataProfs[3] = List.of(34, 25);
-        discoveryProfs[0] = List.of(2);
-        discoveryProfs[1] = List.of(2);
-        discoveryProfs[2] = List.of(34, 39);
-        discoveryProfs[3] = List.of(3);
+        bachataProfs[2] = List.of(36, 39);
+        bachataProfs[3] = List.of(36, 39);
+        bachataProfs[4] = List.of(37, 45);
+        bachataProfs[5] = List.of(37, 45);
+        bachataProfs[6] = List.of(37, 45);
+        discoveryProfs[0] = List.of(11);
+        discoveryProfs[1] = List.of(11);
+        discoveryProfs[2] = List.of(15, 14);
+        discoveryProfs[3] = List.of();
+        discoveryProfs[4] = List.of(50, 52);
+        discoveryProfs[5] = List.of(14);
 
+        /* Data cleaning : remove profs that voted for their own class BEFORE using the data */
+        for (int s = 0; s < salsaProfs.length; ++s) {
+            for (Integer prof : salsaProfs[s]) {
+                participantsSalsaChoices[prof][s] = false;
+            }
+        }
+        for (int b = 0; b < bachataProfs.length; ++b) {
+            for (Integer prof : bachataProfs[b]) {
+                participantsBachataChoices[prof][b] = false;
+            }
+        }
+        for (int d = 0; d < discoveryProfs.length; ++d) {
+            for (Integer prof : discoveryProfs[d]) {
+                participantsDiscoveryChoices[prof][d] = false;
+            }
+        }
 
-        /* Hard constraint: Profs cannot teach when they are unavailable, like due to duties. (automated unless Patrick is not the masterchef anymore)
+        /* Hard constraint: Profs cannot teach when they are unavailable, like due to duties. (automated unless special case Patrick is not the masterchef anymore)
         * Note: these are not used for loss computation, so patrick does not get a boost in the loss, which is correct */
         Set<Integer>[] salsaProfsUnavailable = new Set[salsaClasses.length];
         Set<Integer>[] bachataProfsUnavailable = new Set[bachataClasses.length];
@@ -218,7 +413,8 @@ public class Main {
         Set<Integer>[] salsaVoters = new Set[salsaClasses.length];
         Set<Integer>[] bachataVoters = new Set[bachataClasses.length];
         Set<Integer>[] discoveryVoters = new Set[discoveryClasses.length];
-        int[] howManyChoices = new int[participantsChoices.length];
+        int numParticipants = participantsSalsaChoices.length;
+        howManyChoices = new int[numParticipants];
         for (int i = 0; i < salsaVoters.length; ++i) {
             salsaVoters[i] = new HashSet<>();
         }
@@ -229,47 +425,45 @@ public class Main {
             discoveryVoters[i] = new HashSet<>();
         }
 
-        // assign voters to the classes they voted by matching classes names and choices
-        for (int p = 0; p < participantsChoices.length; ++p) {
-            for (String choice : participantsChoices[p].split(",")) {
-                choice = choice.trim();
-                if (choice.isEmpty()) {
-                    continue;
+        // assign voters to the classes they voted
+        for (int p = 0; p < numParticipants; ++p) {
+            for (int c = 0; c < salsaClasses.length; ++c) {
+                if (participantsSalsaChoices[p][c]) {
+                    ++howManyChoices[p];
+                    ++salsaVotes[c];
+                    salsaVoters[c].add(p);
                 }
-                ++howManyChoices[p];
-                boolean classFound = false;
-                // technical note: I use "contains" instead of equalsTo because stylingClassId merges Men and Lady Styling, so it's like two classes in one
-                for (int c = 0; !classFound && c < salsaClasses.length; ++c) {
-                    if (salsaClasses[c].contains(choice)) {
-                        ++salsaVotes[c];
-                        salsaVoters[c].add(p);
-                        classFound = true;
-                    }
+            }
+            for (int c = 0; c < bachataClasses.length; ++c) {
+                if (participantsBachataChoices[p][c]) {
+                    ++howManyChoices[p];
+                    ++bachataVotes[c];
+                    bachataVoters[c].add(p);
                 }
-                for (int c = 0; !classFound && c < bachataClasses.length; ++c) {
-                    if (bachataClasses[c].contains(choice)) {
-                        ++bachataVotes[c];
-                        bachataVoters[c].add(p);
-                        classFound = true;
-                    }
-                }
-                for (int c = 0; !classFound && c < discoveryClasses.length; ++c) {
-                    if (discoveryClasses[c].contains(choice)) {
-                        ++discoveryVotes[c];
-                        discoveryVoters[c].add(p);
-                        classFound = true;
-                    }
+            }
+            for (int c = 0; c < discoveryClasses.length; ++c) {
+                if (participantsDiscoveryChoices[p][c]) {
+                    ++howManyChoices[p];
+                    ++discoveryVotes[c];
+                    discoveryVoters[c].add(p);
                 }
             }
         }
 
-        /* Hard constraint:  profs cannot teach two classes at the same time (automated) */
+        /* Hard constraint: profs cannot teach two classes at the same time (automated) */
         List<Integer>[] sameProfSalsaToBachata = new List[salsaVotes.length];
         List<Integer>[] sameProfSalsaToDiscovery = new List[salsaVotes.length];
+        List<Integer>[] sameProfSalsaToSalsa = new List[salsaVotes.length];
         List<Integer>[] sameProfBachataToDiscovery = new List[bachataVotes.length];
-        for (int s = 0; s < sameProfSalsaToBachata.length; ++s) {
+        for (int s = 0; s < sameProfSalsaToSalsa.length; ++s) {
             sameProfSalsaToBachata[s] = new ArrayList<>();
             sameProfSalsaToDiscovery[s] = new ArrayList<>();
+            sameProfSalsaToSalsa[s] = new ArrayList<>();
+            for (int ss = 0; ss < salsaProfs.length; ++ss) {
+                if (salsaProfs[s].stream().anyMatch(salsaProfs[ss]::contains)) {
+                    sameProfSalsaToSalsa[s].add(ss);
+                }
+            }
             for (int b = 0; b < bachataProfs.length; ++b) {
                 if (salsaProfs[s].stream().anyMatch(bachataProfs[b]::contains)) {
                     sameProfSalsaToBachata[s].add(b);
@@ -293,18 +487,18 @@ public class Main {
 //            System.out.println(sameProfBachataToDiscovery[b]);
         }
 
-        if ((salsaVotes.length + 1) + bachataVotes.length + discoveryVotes.length != NUM_CLASSROOMS * TIME_SLOTS) {
+        if (salsaVotes.length + bachataVotes.length + discoveryVotes.length != NUM_CLASSROOMS * TIME_SLOTS) {
             throw new RuntimeException("Not Enough classes for the time slots");
         }
         int numClasses = salsaVotes.length + bachataVotes.length + discoveryVotes.length;
-        System.out.println("--- Number of classes " + (numClasses + 1)); // +1 because of styiling counts as 2 classes
+        System.out.println("--- Number of classes " + numClasses);
 
 
         /* Solve */
         Optimizer optimizer = new Optimizer(salsaVoters, bachataVoters, discoveryVoters, duties, howManyChoices, salsaProfs, bachataProfs, discoveryProfs,
-                sameProfSalsaToBachata, sameProfSalsaToDiscovery, sameProfBachataToDiscovery,
+                sameProfSalsaToBachata, sameProfSalsaToDiscovery, sameProfBachataToDiscovery, sameProfSalsaToSalsa,
                 salsaProfsUnavailable, bachataProfsUnavailable, discoveryProfsUnavailable, salsaStylingId);
-        float bestScore = optimizer.solve(0, (1 << numClasses) - 1, 2, 2, 2);
+        float bestScore = optimizer.solve(0, (1 << numClasses) - 1, true);
         System.out.println("--- Average Loss " + (bestScore / TIME_SLOTS));
         System.out.println();
 
@@ -318,14 +512,16 @@ public class Main {
             BestGuess bestGuess = optimizer.memo.get(classesSubset);
             System.out.print(printA(bestGuess));
             System.out.print(printB(bestGuess));
-            int[] aVotes = bestGuess.isSalsaInA ? salsaVotes : bachataVotes;
-            int[] bVotes = bestGuess.isBachataInB ? bachataVotes : discoveryVotes;
-            System.out.println(optimizer.computeSimilarity(bestGuess.timeSlot, aVotes, bVotes) + "%");
-            int aOffset = bestGuess.isSalsaInA ? (bachataVotes.length + discoveryVotes.length) : discoveryVotes.length;
-            int bOffset = bestGuess.isBachataInB ? discoveryVotes.length : 0;
-            classesSubset -= 1 << (aOffset + bestGuess.timeSlot[CLASSROOM_A_ID]);
-            if (!bestGuess.isSalsaInA || bestGuess.timeSlot[CLASSROOM_A_ID] != salsaStylingId) {
-                classesSubset -= 1 << (bOffset + bestGuess.timeSlot[CLASSROOM_B_ID]);
+            System.out.print(printC(bestGuess));
+            System.out.println(optimizer.computeSimilarity(bestGuess) + "%");
+            int salsaOffset = bachataVotes.length + discoveryVotes.length;
+            int bachataOffset = discoveryVotes.length;
+            classesSubset -= 1 << (salsaOffset + bestGuess.timeSlot[CLASSROOM_ONE_ID]);
+            classesSubset -= 1 << (bachataOffset + bestGuess.timeSlot[CLASSROOM_TWO_ID]);
+            if (bestGuess.hasClassThreeSalsa) {
+                classesSubset -= 1 << (salsaOffset + bestGuess.timeSlot[CLASSROOM_THREE_ID]);
+            } else {
+                classesSubset -= 1 << (bestGuess.timeSlot[CLASSROOM_THREE_ID]);
             }
         }
 
@@ -336,11 +532,14 @@ public class Main {
         for (int i = 0, classesSubset = (1 << numClasses) - 1; i < TIME_SLOTS; ++i) {
             BestGuess bestGuess = optimizer.memo.get(classesSubset);
             showResultPerPerson(bestGuess, salsaVoters, bachataVoters, discoveryVoters, salsaProfs, bachataProfs, discoveryProfs, duties, i, missingPreferences);
-            int aOffset = bestGuess.isSalsaInA ? (bachataVotes.length + discoveryVotes.length) : discoveryVotes.length;
-            int bOffset = bestGuess.isBachataInB ? discoveryVotes.length : 0;
-            classesSubset -= 1 << (aOffset + bestGuess.timeSlot[CLASSROOM_A_ID]);
-            if (!bestGuess.isSalsaInA || bestGuess.timeSlot[CLASSROOM_A_ID] != salsaStylingId) {
-                classesSubset -= 1 << (bOffset + bestGuess.timeSlot[CLASSROOM_B_ID]);
+            int salsaOffset = bachataVotes.length + discoveryVotes.length;
+            int bachataOffset = discoveryVotes.length;
+            classesSubset -= 1 << (salsaOffset + bestGuess.timeSlot[CLASSROOM_ONE_ID]);
+            classesSubset -= 1 << (bachataOffset + bestGuess.timeSlot[CLASSROOM_TWO_ID]);
+            if (bestGuess.hasClassThreeSalsa) {
+                classesSubset -= 1 << (salsaOffset + bestGuess.timeSlot[CLASSROOM_THREE_ID]);
+            } else {
+                classesSubset -= 1 << (bestGuess.timeSlot[CLASSROOM_THREE_ID]);
             }
         }
         System.out.println();
@@ -348,30 +547,30 @@ public class Main {
         System.out.println();
 
         System.out.println("People that will have to do less than what they chose");
-        Person[] result = new Person[participants.length];
+        Participant[] result = new Participant[participants.length];
         for (int p = 0; p < participants.length; ++p) {
-            result[p] = new Person();
+            result[p] = new Participant();
             result[p].name = participants[p];
-            result[p].numPreferences = participantsChoices[p].split(",").length;
+            result[p].numPreferences = howManyChoices[p];
             result[p].missingPreferences = missingPreferences[p];
             result[p].score = missingPreferences[p] / (float) result[p].numPreferences;
         }
         Arrays.sort(result);
-        for (Person person : result) {
-            if (person.numPreferences - person.missingPreferences >= TIME_SLOTS || person.missingPreferences == 0) {
+        for (Participant participant : result) {
+            if (participant.numPreferences - participant.missingPreferences >= TIME_SLOTS || participant.missingPreferences == 0) {
                 continue;
             }
-            System.out.println(person.name + "(" + person.numPreferences + "): " + (person.numPreferences - person.missingPreferences));
+            System.out.println(participant.name + "(" + participant.numPreferences + "): " + (participant.numPreferences - participant.missingPreferences));
         }
     }
 
-    static class Person implements Comparable<Person> {
+    static class Participant implements Comparable<Participant> {
         int numPreferences, missingPreferences;
         float score;
         String name;
 
         @Override
-        public int compareTo(Person o) {
+        public int compareTo(Participant o) {
             return Float.compare(o.score, this.score);
         }
     }
@@ -379,43 +578,67 @@ public class Main {
     static void showResultPerPerson(BestGuess bestGuess, Set<Integer>[] salsa, Set<Integer>[] bachata, Set<Integer>[] discovery,
                                     List<Integer>[] salsaProfs, List<Integer>[] bachataProfs, List<Integer>[] discoveryProfs,
                                     Set<Integer>[] duties, int i, int[] missingPreferences) {
-        Set<Integer>[] As = bestGuess.isSalsaInA ? salsa : bachata, Bs = bestGuess.isBachataInB ? bachata : discovery;
-        Set<Integer> interestedInA = As[bestGuess.timeSlot[CLASSROOM_A_ID]];
-        Set<Integer> interestedInBoth = new HashSet<>(), interestedInOneOrMore = new HashSet<>(interestedInA), onDutiesAndInterestedInOneOrMore = new HashSet<>(duties[i]);
-        if (bestGuess.timeSlot[CLASSROOM_B_ID] != NO_CLASS) {
-            Set<Integer> interestedInB =  Bs[bestGuess.timeSlot[CLASSROOM_B_ID]];
-            interestedInBoth = new HashSet<>(interestedInA);
-            interestedInBoth.retainAll(interestedInB);
-            interestedInOneOrMore.addAll(interestedInB);
-        }
+        Set<Integer> interestedInSalsa = salsa[bestGuess.timeSlot[CLASSROOM_ONE_ID]];
+        Set<Integer> interestedInBachata =  bachata[bestGuess.timeSlot[CLASSROOM_TWO_ID]];
+        Set<Integer> interestedInThirdClass =  bestGuess.hasClassThreeSalsa ? salsa[bestGuess.timeSlot[CLASSROOM_THREE_ID]] : discovery[bestGuess.timeSlot[CLASSROOM_THREE_ID]];
+        Set<Integer> interestedInSB = new HashSet<>(interestedInSalsa), interestedInST = new HashSet<>(interestedInSalsa), interestedInBT = new HashSet<>(interestedInBachata);
+        interestedInSB.retainAll(interestedInBachata);
+        interestedInST.retainAll(interestedInThirdClass);
+        interestedInBT.retainAll(interestedInThirdClass);
+        Set<Integer> interestedInExactlyThree = new HashSet<>(interestedInSalsa);
+        interestedInExactlyThree.retainAll(interestedInBT);
+        // Note : no need to remove SBT because it's included in SB, ST, BT
+        Set<Integer> interestedInExactlyOne = new HashSet<>(interestedInSalsa);
+        interestedInExactlyOne.addAll(interestedInBachata);
+        interestedInExactlyOne.addAll(interestedInThirdClass);
+        interestedInExactlyOne.removeAll(interestedInSB);
+        interestedInExactlyOne.removeAll(interestedInST);
+        interestedInExactlyOne.removeAll(interestedInBT);
+        Set<Integer> interestedInExactlyTwo = new HashSet<>(interestedInSB);
+        interestedInExactlyTwo.addAll(interestedInST);
+        interestedInExactlyTwo.addAll(interestedInBT);
+        interestedInExactlyTwo.removeAll(interestedInExactlyThree);
+        Set<Integer> onDuty = new HashSet<>(duties[i]);
         /* Count profs as on duty, because they have no option just like the people in the kitchen */
-        List<Integer> profsA = bestGuess.isSalsaInA ? salsaProfs[bestGuess.timeSlot[CLASSROOM_A_ID]] : bachataProfs[bestGuess.timeSlot[CLASSROOM_A_ID]];
-        List<Integer> profsB = new ArrayList<>();
-        if (bestGuess.timeSlot[CLASSROOM_B_ID] != NO_CLASS) {
-            profsB = !bestGuess.isBachataInB ? discoveryProfs[bestGuess.timeSlot[CLASSROOM_B_ID]] : bachataProfs[bestGuess.timeSlot[CLASSROOM_B_ID]];
-        }
-        onDutiesAndInterestedInOneOrMore.addAll(profsA);
-        onDutiesAndInterestedInOneOrMore.addAll(profsB);
+        onDuty.addAll(salsaProfs[bestGuess.timeSlot[CLASSROOM_ONE_ID]]);
+        onDuty.addAll(bachataProfs[bestGuess.timeSlot[CLASSROOM_TWO_ID]]);
+        onDuty.addAll(bestGuess.hasClassThreeSalsa ? salsaProfs[bestGuess.timeSlot[CLASSROOM_THREE_ID]] : discoveryProfs[bestGuess.timeSlot[CLASSROOM_THREE_ID]]);
 
-        onDutiesAndInterestedInOneOrMore.retainAll(interestedInOneOrMore);
-        Set<Integer> onDutiesAndInterestedInBoth = new HashSet<>(interestedInBoth);
-        onDutiesAndInterestedInBoth.retainAll(duties[i]);
-        interestedInBoth.removeAll(onDutiesAndInterestedInBoth);
-        onDutiesAndInterestedInOneOrMore.removeAll(onDutiesAndInterestedInBoth);
-        System.out.println("WORKSHOP " + (i + 1) + ": List of people that wants to do both classes but miss one (" + interestedInBoth.size() + ")");
-        for (int p : interestedInBoth) {
+        Set<Integer> interestedInExactlyOneAndOnDuty = new HashSet<>(interestedInExactlyOne);
+        interestedInExactlyOneAndOnDuty.retainAll(onDuty);
+        Set<Integer> interestedInExactlyTwoAndOnDuty = new HashSet<>(interestedInExactlyTwo);
+        interestedInExactlyTwoAndOnDuty.retainAll(onDuty);
+        Set<Integer> interestedInExactlyThreeAndOnDuty = new HashSet<>(interestedInExactlyThree);
+        interestedInExactlyThreeAndOnDuty.retainAll(onDuty);
+        Set<Integer> interestedInExactlyTwoAndNotOnDuty = new HashSet<>(interestedInExactlyTwo);
+        interestedInExactlyTwoAndNotOnDuty.removeAll(interestedInExactlyTwoAndOnDuty);
+        Set<Integer> interestedInExactlyThreeAndNotOnDuty = new HashSet<>(interestedInExactlyThree);
+        interestedInExactlyThreeAndNotOnDuty.removeAll(interestedInExactlyThreeAndOnDuty);
+
+        System.out.println("WORKSHOP " + (i + 1) + ": List of people that will have to choose between two classes (" + interestedInExactlyTwoAndNotOnDuty.size() + ")");
+        for (int p : interestedInExactlyTwoAndNotOnDuty) {
             System.out.print(participants[p].trim() + ", ");
             missingPreferences[p]++;
         }
-        System.out.println("\nWORKSHOP " + (i + 1) + ": List of people on duty that miss one class they want to do (" + onDutiesAndInterestedInOneOrMore.size() + ")");
-        for (int p : onDutiesAndInterestedInOneOrMore) {
-            System.out.print(participants[p].trim() + ", ");
-            missingPreferences[p]++;
-        }
-        System.out.println("\nWORKSHOP " + (i + 1) + ": List of people on duty missing BOTH classes they want to do (" + onDutiesAndInterestedInBoth.size() + ")");
-        for (int p : onDutiesAndInterestedInBoth) {
+        System.out.println("\nWORKSHOP " + (i + 1) + ": List of people that will have to choose between three classes (" + interestedInExactlyThreeAndNotOnDuty.size() + ")");
+        for (int p : interestedInExactlyThreeAndNotOnDuty) {
             System.out.print(participants[p].trim() + ", ");
             missingPreferences[p] += 2;
+        }
+        System.out.println("\nWORKSHOP " + (i + 1) + ": List of people on duty that miss one class they want to do (" + interestedInExactlyOneAndOnDuty.size() + ")");
+        for (int p : interestedInExactlyOneAndOnDuty) {
+            System.out.print(participants[p].trim() + ", ");
+            missingPreferences[p]++;
+        }
+        System.out.println("\nWORKSHOP " + (i + 1) + ": List of people on duty missing two classes they want to do (" + interestedInExactlyTwoAndOnDuty.size() + ")");
+        for (int p : interestedInExactlyTwoAndOnDuty) {
+            System.out.print(participants[p].trim() + ", ");
+            missingPreferences[p] += 2;
+        }
+        System.out.println("\nWORKSHOP " + (i + 1) + ": List of people on duty missing three classes they want to do (" + interestedInExactlyThreeAndOnDuty.size() + ")");
+        for (int p : interestedInExactlyThreeAndOnDuty) {
+            System.out.print(participants[p].trim() + ", ");
+            missingPreferences[p] += 3;
         }
         System.out.println();
         System.out.println();
@@ -423,26 +646,25 @@ public class Main {
     }
 
     static String printA(BestGuess bestGuess) {
-        if (bestGuess.isSalsaInA) {
-            return salsaClasses[bestGuess.timeSlot[CLASSROOM_A_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_A_ID]] +  ")" + "\t\t";
-        }
-        return bachataClasses[bestGuess.timeSlot[CLASSROOM_A_ID]] + "(" + bachataVotes[bestGuess.timeSlot[CLASSROOM_A_ID]] +  ")" + "\t\t";
+        return salsaClasses[bestGuess.timeSlot[CLASSROOM_ONE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_ONE_ID]] +  ")" + "\t\t";
     }
 
     static String printB(BestGuess bestGuess) {
-        if (bestGuess.isSalsaInA && bestGuess.timeSlot[CLASSROOM_A_ID] == salsaStylingId) {
-            return "";
+        return bachataClasses[bestGuess.timeSlot[CLASSROOM_TWO_ID]] + "(" + bachataVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]] +  ")" + "\t\t";
+    }
+
+    static String printC(BestGuess bestGuess) {
+        if (bestGuess.hasClassThreeSalsa) {
+            return salsaClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] +  ")" + "\t\t";
         }
-        if (bestGuess.isBachataInB) {
-            return bachataClasses[bestGuess.timeSlot[CLASSROOM_B_ID]] + "(" + bachataVotes[bestGuess.timeSlot[CLASSROOM_B_ID]] +  ")" + "\t\t";
-        }
-        return discoveryClasses[bestGuess.timeSlot[CLASSROOM_B_ID]] + "(" + discoveryVotes[bestGuess.timeSlot[CLASSROOM_B_ID]] +  ")" + "\t\t";
+        return discoveryClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + discoveryVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] +  ")" + "\t\t";
+
     }
 
     private static class Optimizer {
         Map<Integer, BestGuess> memo = new HashMap<>();
         Set<Integer>[] salsa, bachata, discovery, duties;
-        List<Integer>[] sameProfSalsaToBachata, sameProfSalsaToDiscovery, sameProfBachataToDiscovery;
+        List<Integer>[] sameProfSalsaToBachata, sameProfSalsaToDiscovery, sameProfBachataToDiscovery, sameProfSalsaToSalsa;
         Set<Integer>[] salsaProfsUnavailable, bachataProfsUnavailable, discoveryProfsUnavailable;
 
         List<Integer>[] salsaProfs, bachataProfs, discoveryProfs;
@@ -450,7 +672,7 @@ public class Main {
         float[] pWeight;
 
         final int salsaStylingId;
-        final float target;
+        final float heuristicTarget;
 
         Optimizer(Set<Integer>[] salsa, Set<Integer>[] bachata, Set<Integer>[] discovery, Set<Integer>[] duties, int[] numPreferences,
                   List<Integer>[] salsaProfs,
@@ -458,6 +680,7 @@ public class Main {
                   List<Integer>[] discoveryProfs,
                   List<Integer>[] sameProfSalsaToBachata,
                   List<Integer>[] sameProfSalsaToDiscovery, List<Integer>[] sameProfBachataToDiscovery,
+                  List<Integer>[] sameProfSalsaToSalsa,
                   Set<Integer>[] salsaProfsUnavailable, Set<Integer>[] bachataProfsUnavailable, Set<Integer>[] discoveryProfsUnavailable,
                   int salsaStylingId) {
             this.salsa = salsa;
@@ -467,6 +690,7 @@ public class Main {
             this.salsaProfs = salsaProfs;
             this.bachataProfs = bachataProfs;
             this.discoveryProfs = discoveryProfs;
+            this.sameProfSalsaToSalsa = sameProfSalsaToSalsa;
             this.sameProfSalsaToBachata = sameProfSalsaToBachata;
             this.sameProfSalsaToDiscovery = sameProfSalsaToDiscovery;
             this.sameProfBachataToDiscovery = sameProfBachataToDiscovery;
@@ -476,14 +700,19 @@ public class Main {
             this.salsaStylingId = salsaStylingId;
             pWeight = new float[numPreferences.length];
             for (int p = 0; p < numPreferences.length; ++p) {
-                pWeight[p] = numPreferences[p] < 8 ? (8 - numPreferences[p]) : (-1.0f/6.0f * numPreferences[p] + 13.0f/6.0f);
+                int CUTOFF = TIME_SLOTS + 1;
+                int MAX_COUNT = TIME_SLOTS * NUM_CLASSROOMS;
+                float m = -1.0f/(MAX_COUNT - TIME_SLOTS);
+                float q = 1.0f + TIME_SLOTS / (float) (MAX_COUNT - TIME_SLOTS);
+                pWeight[p] = numPreferences[p] < CUTOFF ? (CUTOFF - numPreferences[p]) : (-1.0f/14.0f * numPreferences[p] + 1.5f);
             }
-            this.target = (float) (Arrays.stream(salsaVotes).sum() + Arrays.stream(bachataVotes).sum() + Arrays.stream(discoveryVotes).sum())
+            this.heuristicTarget = (float) (Arrays.stream(salsaVotes).sum() + Arrays.stream(bachataVotes).sum() + Arrays.stream(discoveryVotes).sum())
                         / (salsaVotes.length + bachataVotes.length + discoveryVotes.length);
-            System.out.println("--- Average " + target);
+            initPenalties();
+            System.out.println("--- Average " + heuristicTarget);
         }
 
-        float solve(int timeSlotId, int classesSubset, int SB, int SD, int BD) {
+        float solve(int timeSlotId, int classesSubset, boolean extraSalsa) {
             if (timeSlotId >= TIME_SLOTS) { // Base case
                 boolean allClassesOnSchedule = classesSubset == 0;
                 return allClassesOnSchedule ? 0.0f : INFINITY;
@@ -492,35 +721,25 @@ public class Main {
             if (ans != null) {
                 return ans.score;
             }
-            ans = guessA(timeSlotId, classesSubset, SB, SD, BD, new int[NUM_CLASSROOMS]);
+            ans = guessSalsa(timeSlotId, classesSubset, extraSalsa, new int[NUM_CLASSROOMS]);
             memo.put(classesSubset, ans);
             return ans.score;
         }
 
-        BestGuess guessA(int timeSlotId, int classesSubset, int SB, int SD, int BD, int[] timeSlot) {
-            // guess Salsa in classroom A
-            BestGuess bestGuess = guessA(timeSlotId, classesSubset, SB, SD, BD, timeSlot, bachata.length + discovery.length,
-                    salsa.length, salsaProfsUnavailable, true, IMPOSSIBLE);
-            // guess Bachata in classroom A
-            return guessA(timeSlotId, classesSubset, SB, SD, BD, timeSlot, discovery.length,
-                    bachata.length, bachataProfsUnavailable, false, bestGuess);
-        }
-        BestGuess guessA(int timeSlotId, int classesSubset, int SB, int SD, int BD, int[] timeSlot,
-                         int offset, int numClasses, Set<Integer>[] profsOnDuty, boolean isSalsaInA,
-                         BestGuess bestGuess) {
-            for (int currClass = 0; currClass < numClasses; ++currClass) {
-                if (isProfUnavailable(currClass, timeSlotId, profsOnDuty)) {
+        BestGuess guessSalsa(int timeSlotId, int classesSubset, boolean extraSalsa, int[] timeSlot) {
+            BestGuess bestGuess = IMPOSSIBLE;
+            int offset = bachata.length + discovery.length;
+            for (int currClass = 0; currClass < salsa.length; ++currClass) {
+                if (isProfUnavailable(currClass, timeSlotId, salsaProfsUnavailable)) {
                     continue;
                 }
                 int classMask = 1 << (offset + currClass);
                 boolean isClassNotPicked =  (classesSubset & classMask) > 0;
                 if (isClassNotPicked) {
-                    timeSlot[CLASSROOM_A_ID] = currClass;
-                    boolean isSalsaStyling = isSalsaInA && currClass == salsaStylingId;
-                    BestGuess someGuess = guessB(timeSlotId, classesSubset - classMask, SB, SD, BD, timeSlot, isSalsaInA, isSalsaStyling);
+                    timeSlot[CLASSROOM_ONE_ID] = currClass;
+                    BestGuess someGuess = guessBachata(timeSlotId, classesSubset - classMask, extraSalsa, timeSlot);
                     if (someGuess.score < bestGuess.score) {
-                        someGuess.timeSlot[CLASSROOM_A_ID] = currClass;
-                        someGuess.isSalsaInA = isSalsaInA;
+                        someGuess.timeSlot[CLASSROOM_ONE_ID] = currClass;
                         bestGuess = someGuess;
                     }
                 }
@@ -528,44 +747,21 @@ public class Main {
             return bestGuess;
         }
 
-        BestGuess guessB(int timeSlotId, int classesSubset, int SB, int SD, int BD, int[] timeSlot, boolean isSalsaInA, boolean isSalsaStyling) {
-            if (isSalsaStyling) {
-                timeSlot[CLASSROOM_B_ID] = NO_CLASS; // class A and B will be used for the styling
-                return endOfTimeSlot(timeSlotId, classesSubset, SB, SD, BD, timeSlot, true, false, salsa, null);
-            } else if (isSalsaInA) { // salsa in A, guess bachata or discovery in B
-                BestGuess bestGuess = IMPOSSIBLE;
-                if (SB > 0) {
-                    bestGuess = guessB(timeSlotId, classesSubset, SB - 1, SD, BD, timeSlot,
-                            discovery.length, salsa, bachata, true, true, bachataProfsUnavailable, sameProfSalsaToBachata, bestGuess);
-                }
-                if (SD > 0) {
-                    bestGuess = guessB(timeSlotId, classesSubset, SB, SD - 1, BD, timeSlot,
-                            0, salsa, discovery, true, false, discoveryProfsUnavailable, sameProfSalsaToDiscovery, bestGuess);
-                }
-                return bestGuess;
-            } else { // bachata in A, only option is discovery for B
-                if (BD <= 0) {
-                    return IMPOSSIBLE;
-                }
-                return guessB(timeSlotId, classesSubset, SB, SD, BD - 1, timeSlot,
-                        0, bachata, discovery, false, false, discoveryProfsUnavailable, sameProfBachataToDiscovery, IMPOSSIBLE);
-            }
-        }
-        BestGuess guessB(int timeSlotId, int classesSubset, int SB, int SD, int BD, int[] timeSlot,
-                         int offset, Set<Integer>[] As, Set<Integer>[] Bs, boolean isSalsaInA, boolean isBachataInB,
-                         Set<Integer>[] profsOnDuty, List<Integer>[] sameProfAtoB, BestGuess bestGuess) {
-            for (int currClass = 0; currClass < Bs.length; ++currClass) {
-                if (isProfAlreadyInTimeSlot(currClass, sameProfAtoB, timeSlot) || isProfUnavailable(currClass, timeSlotId, profsOnDuty)) {
+        BestGuess guessBachata(int timeSlotId, int classesSubset, boolean extraSalsa, int[] timeSlot) {
+            BestGuess bestGuess = IMPOSSIBLE;
+            int offset = discovery.length;
+            for (int currClass = 0; currClass < bachata.length; ++currClass) {
+                if (isProfAlreadyInTimeSlot(currClass, sameProfSalsaToBachata, timeSlot[CLASSROOM_ONE_ID])
+                        || isProfUnavailable(currClass, timeSlotId, bachataProfsUnavailable)) {
                     continue;
                 }
                 int classMask = 1 << (offset + currClass);
                 boolean isClassNotPicked =  (classesSubset & classMask) > 0;
                 if (isClassNotPicked) {
-                    timeSlot[CLASSROOM_B_ID] = currClass;
-                    BestGuess someGuess = endOfTimeSlot(timeSlotId, classesSubset - classMask, SB, SD, BD, timeSlot, isSalsaInA, !isBachataInB, As, Bs);
-                    if (someGuess.score < bestGuess.score || (someGuess.score == bestGuess.score && ThreadLocalRandom.current().nextFloat() < 0.5)) {
-                        someGuess.timeSlot[CLASSROOM_B_ID] = currClass;
-                        someGuess.isBachataInB = isBachataInB;
+                    timeSlot[CLASSROOM_TWO_ID] = currClass;
+                    BestGuess someGuess = guessDiscovery(timeSlotId, classesSubset - classMask, extraSalsa, timeSlot);
+                    if (someGuess.score < bestGuess.score) {
+                        someGuess.timeSlot[CLASSROOM_TWO_ID] = currClass;
                         bestGuess = someGuess;
                     }
                 }
@@ -573,75 +769,116 @@ public class Main {
             return bestGuess;
         }
 
-        BestGuess endOfTimeSlot(int timeSlotId, int classesSubset, int SB, int SD, int BD, int[] timeSlot, boolean isSalsaInA, boolean isDiscoveryInB, Set<Integer>[] As, Set<Integer>[] Bs) {
-            float lookup = solve(timeSlotId + 1, classesSubset, SB, SD, BD);
-            Set<Integer> B = timeSlot[CLASSROOM_B_ID] == NO_CLASS ? null : Bs[timeSlot[CLASSROOM_B_ID]];
-            return lookup > SCORE_LIMIT ? IMPOSSIBLE : new BestGuess(
-                    computeScore(timeSlotId, classesSubset, timeSlot, isSalsaInA, isDiscoveryInB, As[timeSlot[CLASSROOM_A_ID]], B) + lookup);
+        BestGuess guessDiscovery(int timeSlotId, int classesSubset, boolean extraSalsa, int[] timeSlot) {
+            BestGuess bestGuess = IMPOSSIBLE;
+            if (extraSalsa) {
+                int offset = bachata.length + discovery.length;
+                for (int currClass = 0; currClass < salsa.length; ++currClass) {
+                    if (isProfAlreadyInTimeSlot(currClass, sameProfSalsaToSalsa, timeSlot[CLASSROOM_ONE_ID])
+                            || isProfAlreadyInTimeSlot(timeSlot[CLASSROOM_TWO_ID], sameProfSalsaToBachata, currClass)
+                            || isProfUnavailable(currClass, timeSlotId, salsaProfsUnavailable)) {
+                        continue;
+                    }
+                    int classMask = 1 << (offset + currClass);
+                    boolean isClassNotPicked =  (classesSubset & classMask) > 0;
+                    if (isClassNotPicked) {
+                        timeSlot[CLASSROOM_THREE_ID] = currClass;
+                        BestGuess someGuess = endOfTimeSlot(timeSlotId, classesSubset - classMask, false, true, timeSlot);
+                        if (someGuess.score < bestGuess.score) {
+                            someGuess.timeSlot[CLASSROOM_THREE_ID] = currClass;
+                            someGuess.hasClassThreeSalsa = true;
+                            bestGuess = someGuess;
+                        }
+                    }
+                }
+            }
+            int offset = 0;
+            for (int currClass = 0; currClass < discovery.length; ++currClass) {
+                if (isProfAlreadyInTimeSlot(currClass, sameProfSalsaToDiscovery, timeSlot[CLASSROOM_ONE_ID])
+                        || isProfAlreadyInTimeSlot(currClass, sameProfBachataToDiscovery, timeSlot[CLASSROOM_TWO_ID])
+                        || isProfUnavailable(currClass, timeSlotId, bachataProfsUnavailable)) {
+                    continue;
+                }
+                int classMask = 1 << (offset + currClass);
+                boolean isClassNotPicked =  (classesSubset & classMask) > 0;
+                if (isClassNotPicked) {
+                    timeSlot[CLASSROOM_THREE_ID] = currClass;
+                    BestGuess someGuess = endOfTimeSlot(timeSlotId, classesSubset - classMask, extraSalsa, false, timeSlot);
+                    if (someGuess.score < bestGuess.score) {
+                        someGuess.timeSlot[CLASSROOM_THREE_ID] = currClass;
+                        bestGuess = someGuess;
+                    }
+                }
+            }
+            return bestGuess;
         }
 
-        boolean isProfAlreadyInTimeSlot(int currClass, List<Integer>[] sameProfAtoB, int[] timeSlot) {
-            return sameProfAtoB[timeSlot[CLASSROOM_A_ID]].stream().anyMatch(otherClassTheyGive -> currClass == otherClassTheyGive);
+        BestGuess endOfTimeSlot(int timeSlotId, int classesSubset, boolean extraSalsa, boolean hasClassThreeSalsa, int[] timeSlot) {
+            float lookup = solve(timeSlotId + 1, classesSubset, extraSalsa);
+            float loss = computeScore(timeSlotId, classesSubset, timeSlot, hasClassThreeSalsa);
+            return lookup > SCORE_LIMIT ? IMPOSSIBLE : new BestGuess(loss + lookup);
+        }
+
+        boolean isProfAlreadyInTimeSlot(int b, List<Integer>[] sameProfAtoB, int a) {
+            return sameProfAtoB[a].stream().anyMatch(otherClassTheyGive -> b == otherClassTheyGive);
         }
 
         boolean isProfUnavailable(int currClass, int timeSlotId, Set<Integer>[] profsOnDuty) {
             return profsOnDuty[currClass].contains(timeSlotId);
         }
 
-        private float computeAverage(int[] timeSlot, int[] aVotes, int[] bVotes) {
-            if (timeSlot[CLASSROOM_B_ID] == NO_CLASS) {
-                return aVotes[timeSlot[CLASSROOM_A_ID]];
-            }
-            float count = 2.0f;
-            return (aVotes[timeSlot[CLASSROOM_A_ID]] + bVotes[timeSlot[CLASSROOM_B_ID]]) / count;
+        private float computeAverage(int[] timeSlot, int[] aVotes, int[] bVotes, int[] cVotes) {
+            float count = 3.0f;
+            return (aVotes[timeSlot[CLASSROOM_ONE_ID]] + bVotes[timeSlot[CLASSROOM_TWO_ID]] + cVotes[timeSlot[CLASSROOM_THREE_ID]]) / count;
         }
 
-        // implements loss = AB.count + [D(AuB)].count
-        float computeScore(int timeSlotId, int classesSubset, int[] timeSlot, boolean isSalsaInA, boolean isDiscoveryInB, Set<Integer> interestedInA, Set<Integer> interestedInB) {
-            Set<Integer> interestedInBoth = Set.of(), interestedInOneOrMore = new HashSet<>(interestedInA), onDutiesAndInterestedInOneOrMore = new HashSet<>(duties[timeSlotId]);
-            if (interestedInB != null) {
-                interestedInBoth = new HashSet<>(interestedInA);
-                interestedInBoth.retainAll(interestedInB);
-                interestedInOneOrMore.addAll(interestedInB);
-            }
-            /* Count profs as on duty, because they have no option just like the people in the kitchen */
-            List<Integer> profsA = isSalsaInA ? salsaProfs[timeSlot[CLASSROOM_A_ID]] : bachataProfs[timeSlot[CLASSROOM_A_ID]];
-            List<Integer> profsB = new ArrayList<>();
-            if (timeSlot[CLASSROOM_B_ID] != NO_CLASS) {
-                profsB = isDiscoveryInB ? discoveryProfs[timeSlot[CLASSROOM_B_ID]] : bachataProfs[timeSlot[CLASSROOM_B_ID]];
-            }
-            onDutiesAndInterestedInOneOrMore.addAll(profsA);
-            onDutiesAndInterestedInOneOrMore.addAll(profsB);
+        float weightedSum(Set<Integer> A) {
+            return A.stream().map(p -> pWeight[p]).reduce(0.0f, Float::sum);
+        }
 
-            onDutiesAndInterestedInOneOrMore.retainAll(interestedInOneOrMore);
-            final int RUMBA_CLASS = 3, REGGAE_CLASS = 0, STYLING = 4, STYLING_TIME = 4, PASITOS_ANGELICA = 3;
-            float ANGELICA_W = 100.0f;
-            boolean isAngelicaInA = (isSalsaInA && timeSlot[CLASSROOM_A_ID] == PASITOS_ANGELICA) ||
-                    (isSalsaInA && timeSlot[CLASSROOM_A_ID] == STYLING);
-            boolean isAngelicaInB = isDiscoveryInB && timeSlot[CLASSROOM_B_ID] == RUMBA_CLASS;
+        float[][][][] salsaPenalty, penalty;
 
-            float loss = interestedInBoth.stream().map(p -> pWeight[p]).reduce(0.0f, Float::sum);
-            loss += onDutiesAndInterestedInOneOrMore.stream().map(p -> pWeight[p]).reduce(0.0f, Float::sum);
-            if (isAngelicaInA) {
-                Set<Integer> onDutiesAndInterestedInAngelica = new HashSet<>(onDutiesAndInterestedInOneOrMore);
-                onDutiesAndInterestedInAngelica.retainAll(interestedInA);
-                loss += onDutiesAndInterestedInAngelica.stream().map(p -> pWeight[p]).reduce(0.0f, Float::sum) * ANGELICA_W;
-            } else if (isAngelicaInB) {
-                Set<Integer> onDutiesAndInterstedInAngelica = new HashSet<>(onDutiesAndInterestedInOneOrMore);
-                onDutiesAndInterstedInAngelica.retainAll(interestedInB);
-                loss += onDutiesAndInterstedInAngelica.stream().map(p -> pWeight[p]).reduce(0.0f, Float::sum) * ANGELICA_W;
-            }
-            // Ilaria comes before Angelica
-            if (isDiscoveryInB && timeSlot[CLASSROOM_B_ID] == RUMBA_CLASS) {
-                int classMask = 1 << REGGAE_CLASS;
-                if ((classesSubset & classMask) == 0) {
-                    loss += 1000000;
+        // implements loss = |A| + |B| + |C| - |AuBuC| + |D(AuBuC)|
+        void initPenalties(Set<Integer>[] thirdClass, List<Integer>[] thirdClassProfs, float[][][][] result) {
+            for (int s = 0; s < salsa.length; ++s) {
+                for (int b = 0; b < bachata.length; ++b) {
+                    for (int d = 0; d < thirdClass.length; ++d) {
+                        Set<Integer> AuBuC = new HashSet<>(salsa[s]);
+                        AuBuC.addAll(bachata[b]);
+                        AuBuC.addAll(thirdClass[d]);
+                        for (int i = 0; i < TIME_SLOTS; ++i) {
+                            Set<Integer> DAuBuC = new HashSet<>(duties[i]);
+                            /* Count profs as on duty, because they have no option just like the people in the kitchen */
+                            DAuBuC.addAll(salsaProfs[s]);
+                            DAuBuC.addAll(bachataProfs[b]);
+                            DAuBuC.addAll(thirdClassProfs[d]);
+                            DAuBuC.retainAll(AuBuC);
+                            result[i][s][b][d] = weightedSum(salsa[s]) + weightedSum(bachata[b]) + weightedSum(thirdClass[d])
+                                    - weightedSum(AuBuC) + weightedSum(DAuBuC);
+                        }
+                    }
                 }
             }
+        }
+
+        void initPenalties() {
+            System.out.println("--------- Init penalties ------------");
+            penalty = new float[TIME_SLOTS][salsa.length][bachata.length][discovery.length];
+            salsaPenalty = new float[TIME_SLOTS][salsa.length][bachata.length][salsa.length];
+            initPenalties(discovery, discoveryProfs, penalty);
+            System.out.println("--------- Init salsa penalties ------------");
+            initPenalties(salsa, salsaProfs, salsaPenalty);
+            System.out.println("--------- Init penalties done ------------");
+
+        }
+
+        float computeScore(int timeSlotId, int classesSubset, int[] timeSlot, boolean hasClassThreeSalsa) {
+            float loss = hasClassThreeSalsa ? salsaPenalty[timeSlotId][timeSlot[CLASSROOM_ONE_ID]][timeSlot[CLASSROOM_TWO_ID]][timeSlot[CLASSROOM_THREE_ID]]
+                                        :   penalty[timeSlotId][timeSlot[CLASSROOM_ONE_ID]][timeSlot[CLASSROOM_TWO_ID]][timeSlot[CLASSROOM_THREE_ID]];
             // Styling must be at a specific time
-            if (isSalsaInA && timeSlot[CLASSROOM_A_ID] == STYLING && timeSlotId != STYLING_TIME) {
-                loss += 100000;
-            }
+//            if (timeSlot[CLASSROOM_ONE_ID] == STYLING && timeSlotId != STYLING_TIME) {
+//                loss += 100000;
+//            }
 
             /* Hyperparameters for soft constraints*/
             /* Below are some examples that are reasonable to fine tune happiness of the people attending the workshops.
@@ -666,8 +903,9 @@ public class Main {
             return loss;
         }
 
-        float computeSimilarity(int[] timeSlot, int[] aVotes, int[] bVotes) {
-            return computeAverage(timeSlot, aVotes, bVotes) / target * 100.0f;
+        float computeSimilarity(BestGuess bestGuess) {
+            int[] cVotes = bestGuess.hasClassThreeSalsa ? salsaVotes : discoveryVotes;
+            return computeAverage(bestGuess.timeSlot, salsaVotes, bachataVotes, cVotes) / heuristicTarget * 100.0f;
         }
     }
 
@@ -679,12 +917,13 @@ public class Main {
     private static class BestGuess {
         float score;
         int[] timeSlot;
-        boolean isSalsaInA, isBachataInB;
+        boolean hasClassThreeSalsa;
         BestGuess(float score) {
             this.score = score;
             timeSlot = new int[NUM_CLASSROOMS];
-            timeSlot[0] = -1;
-            timeSlot[1] = -1;
+            for (int i = 0; i < NUM_CLASSROOMS; ++i) {
+                timeSlot[i] = -1;
+            }
         }
     }
 }
