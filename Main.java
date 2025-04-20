@@ -500,6 +500,7 @@ public class Main {
                 salsaProfsUnavailable, bachataProfsUnavailable, discoveryProfsUnavailable, salsaStylingId);
         float bestScore = optimizer.solve(0, (1 << numClasses) - 1, true);
         System.out.println("--- Average Loss " + (bestScore / TIME_SLOTS));
+        System.out.println("--- with the current weight function this means how many classes missed per hour --");
         System.out.println();
 
         if (bestScore > SCORE_LIMIT) {
@@ -508,6 +509,10 @@ public class Main {
         }
 
         /* Visualize */
+        System.out.println("================== Weights ======================");
+        for (int p = 0; p < participants.length; ++p) {
+            System.out.println(participants[p] + " (" + howManyChoices[p] + "): " + optimizer.pWeight[p]);
+        }
         for (int i = 0, classesSubset = (1 << numClasses) - 1; i < TIME_SLOTS; ++i) {
             BestGuess bestGuess = optimizer.memo.get(classesSubset);
             System.out.print(printA(bestGuess));
@@ -700,11 +705,14 @@ public class Main {
             this.salsaStylingId = salsaStylingId;
             pWeight = new float[numPreferences.length];
             for (int p = 0; p < numPreferences.length; ++p) {
-                int CUTOFF = TIME_SLOTS + 1;
-                int MAX_COUNT = TIME_SLOTS * NUM_CLASSROOMS;
-                float m = -1.0f/(MAX_COUNT - TIME_SLOTS);
-                float q = 1.0f + TIME_SLOTS / (float) (MAX_COUNT - TIME_SLOTS);
-                pWeight[p] = numPreferences[p] < CUTOFF ? (CUTOFF - numPreferences[p]) : (-1.0f/14.0f * numPreferences[p] + 1.5f);
+                // method 1 : linear, high penalties for low choices
+//                int CUTOFF = TIME_SLOTS + 1;
+//                int MAX_COUNT = TIME_SLOTS * NUM_CLASSROOMS;
+//                float m = -1.0f/(MAX_COUNT - TIME_SLOTS);
+//                float q = 1.0f + TIME_SLOTS / (float) (MAX_COUNT - TIME_SLOTS);
+//                pWeight[p] = numPreferences[p] < CUTOFF ? (CUTOFF - numPreferences[p]) : (m * numPreferences[p] + q);
+                // method 2: hyperbolic, proportional so missing 1 / 2 is the same as 3.5 / 7
+                pWeight[p] = numPreferences[p] == 0 ? 0.0f : TIME_SLOTS / (float) numPreferences[p];
             }
             this.heuristicTarget = (float) (Arrays.stream(salsaVotes).sum() + Arrays.stream(bachataVotes).sum() + Arrays.stream(discoveryVotes).sum())
                         / (salsaVotes.length + bachataVotes.length + discoveryVotes.length);
