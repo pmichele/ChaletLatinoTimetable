@@ -17,7 +17,7 @@ public class Main {
 
     /* Dataset */
 
-    static String[] salsaClasses = new String[] {
+    static String[] salsaClasses = new String[]{
             "Salsa pasitos afro-rumba (Advanced)  —  Ila",
             "Salsa urban style (Advanced) — PA y Ila",
             "Salsa musicality: catching breaks (Intermediate) — Skander y Maja",
@@ -27,7 +27,7 @@ public class Main {
             "Salsa leading and following (Intermediate) — Robin y Marla",
             "Salsa partnerwork (Intermediate) — Robin y Kai"
     };
-    static String[] bachataClasses = new String[] {
+    static String[] bachataClasses = new String[]{
             "Bachata fusion (Advanced) — Lison y Patrick",
             "Bachata musicality parterwork (Intermediate) — Patrick",
             "Bachata sensual 1 (Intermediate) — Boris y Teya",
@@ -36,7 +36,7 @@ public class Main {
             "Bachata moderna (Intermediate) — Yoss y Morgana",
             "Bachata sensual connection (Advanced) — Yoss y Morgana"
     };
-    static String[] discoveryClasses = new String[] {
+    static String[] discoveryClasses = new String[]{
             "Hip hop (All levels) — Ila",
             "Reggaeton (All levels) — Ila",
             "Jive (All levels) — Lison y Luca",
@@ -79,227 +79,143 @@ public class Main {
             "Carolin Giel",
             "Catarina Meier",
             "Maja Stamenkovic",
-            "Mélanie",
-            "Patrick",
-            "Igor",
-            "Olivier",
-            "Boris",
-            "Yoss",
-            "Estefania Arroyo",
-            "Teya Petrova",
-            "Alic",
-            "Helen",
-            "Diego",
-            "Valentin Gobert",
-            "Florent",
-            "Morgana",
-            "Daniela C",
-            "Matthieu Stigler",
-            "Natali Gomez",
-            "Ulysse Matthey",
-            "Heidi",
-            "Tristan",
-            "Dennis",
-            "Robin R",
-            "Marla",
-            "Merel K",
-            "Céline Wilhelm",
             "Alberto Zirondelli",
-            "Sandra Valero",
-            "Claudia",
-            "Niál Perry",
+            "Céline Wilhelm",
+            "Estefania Arroyo",
+            "Daniela Correa Orozco",
+            "Merel Kuijs",
+            "Diego Clavijo",
+            "Igor Krawczuk",
+            "Heidi Lee"
     };
 
 
-    static boolean[][] participantsSalsaChoices = {
-            {true,  true,  true,  false, false, false, false, false},
-            {false, false, true,  true,  false, false, true,  true },
-            {false, true,  false, false, true,  true,  false, false},
-            {true,  true,  true,  false, true,  false, false, false},
-            {false, false, false, false, false, false, false, false},
-            {true,  false, true,  true,  false, true,  false, false},
-            {false, false, false, true,  false, false, false, false},
-            {true,  false, true,  true,  false, false, false, false},
-            {false, false, false, false, true,  true,  false, false},
-            {true,  true,  false, false, false, false, false, false},
-            {false, false, true,  true,  false, false, true,  true },
-            {true,  true,  false, false, true,  false, false, false},
-            {false, false, false, true,  false, true,  false, false},
-            {true,  false, false, false, false, false, false, false},
-            {false, false, false, true,  false, true,  false, false},
-            {false, false, false, true,  false, false, false, false},
-            {true,  false, true,  false, false, false, false, false},
-            {true,  false, true,  false, false, true,  false, false},
-            {false, false, true,  true,  false, false, true,  true },
-            {true,  false, true,  false, false, true,  false, false},
-            {true,  false, true,  true,  false, false, true,  true },
-            {true,  true,  false, false, false, true,  false, false},
-            {true,  false, true,  false, false, false, false, false},
-            {false, false, false, false, true,  false, false, true },
-            {false, false, false, false, true,  true,  false, false},
-            {false, false, true,  false, true,  false, false, true },
-            {false, false, false, false, true,  false, false, true },
-            {false, false, false, false, false, true,  false, false},
-            {false, false, false, false, true,  false, false, true },
-            {false, false, true,  true,  false, false, true,  false},
-            {true,  true,  false, false, true,  false, false, false},
-            {true,  true,  true,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
+    static int[][] participantsSalsaChoices = {
+            {2, 2, 2, 1, 1, 1, 1, 1},
+            {0, 0, 2, 2, 0, 1, 2, 2},
+            {1, 2, 0, 0, 2, 2, 0, 0},
+            {2, 2, 2, 1, 2, 0, 1, 1},
+            {0, 0, 1, 1, 1, 1, 1, 1},
+            {2, 0, 2, 2, 1, 2, 1, 1},
+            {0, 0, 1, 2, 0, 0, 1, 1},
+            {2, 1, 2, 2, 0, 1, 1, 1},
+            {1, 1, 1, 0, 2, 2, 0, 0},
+            {2, 2, 1, 1, 1, 1, 1, 1},
+            {0, 0, 2, 2, 0, 1, 2, 2},
+            {2, 2, 1, 0, 2, 1, 0, 0},
+            {0, 1, 1, 2, 1, 2, 1, 1},
+            {2, 0, 0, 0, 0, 0, 0, 0},
+            {0, 1, 1, 2, 1, 2, 0, 1},
+            {0, 0, 0, 2, 1, 2, 0, 0},
+            {2, 0, 2, 1, 0, 0, 0, 1},
+            {2, 0, 2, 1, 1, 2, 0, 0},
+            {0, 0, 2, 2, 0, 1, 2, 2},
+            {2, 1, 2, 1, 1, 2, 1, 1},
+            {2, 1, 2, 2, 1, 1, 2, 2},
+            {2, 2, 1, 0, 1, 2, 0, 0},
+            {2, 0, 2, 1, 0, 1, 1, 1},
+            {0, 0, 0, 1, 2, 0, 1, 2},
+            {1, 0, 1, 1, 2, 2, 0, 1},
+            {1, 0, 2, 0, 2, 0, 1, 2},
+            {0, 0, 0, 1, 2, 0, 1, 2},
+            {0, 1, 0, 1, 1, 2, 1, 1},
+            {0, 0, 0, 1, 2, 0, 1, 2},
+            {1, 1, 2, 2, 1, 1, 2, 1},
+            {2, 2, 1, 1, 2, 1, 0, 0},
+            {2, 2, 2, 1, 1, 1, 1, 1},
+            {0, 0, 2, 2, 2, 1, 2, 2},
+            {0, 0, 2, 2, 2, 1, 2, 2},
+            {2, 2, 1, 0, 2, 2, 0, 0},
+            {2, 2, 1, 0, 0, 1, 1, 1},
+            {1, 1, 2, 1, 1, 0, 1, 2},
+            {2, 1, 2, 2, 2, 1, 2, 2},
+            {2, 2, 2, 1, 0, 0, 1, 0},
+            {1, 1, 1, 1, 2, 2, 1, 1},
     };
-    static boolean[][] participantsBachataChoices = {
-            {true,  false, true,  false, false, false, false},
-            {false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false},
-            {false, false, false, false, true,  false, false},
-            {true,  false, false, false, true,  true,  false},
-            {false, false, true,  false, false, false, false},
-            {false, true,  true,  false, true,  false, false},
-            {false, false, true,  false, true,  true,  false},
-            {false, true,  true,  false, false, false, false},
-            {false, true,  false, false, true,  true,  false},
-            {false, true,  false, false, true,  false, false},
-            {false, false, false, false, false, false, false},
-            {false, false, true,  true,  true,  true,  false},
-            {true,  false, true,  true,  false, false, false},
-            {false, false, false, false, false, false, false},
-            {true,  false, false, true,  false, false, false},
-            {false, true,  false, false, true,  false, false},
-            {false, true,  true,  false, true,  false, false},
-            {false, false, false, false, false, false, false},
-            {false, true,  true,  false, false, false, false},
-            {false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false},
-            {false, true,  false, false, true,  false, false},
-            {true,  false, true,  true,  false, false, false},
-            {false, false, false, true,  true,  false, false},
-            {false, false, true,  true,  false, false, false},
-            {true,  false, true,  true,  false, false, false},
-            {false, false, false, false, false, false, false},
-            {true,  false, true,  true,  false, false, false},
-            {false, true,  true,  false, true,  false, false},
-            {true,  false, false, false, true,  false, false},
-            {false, false, false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
+    static int[][] participantsBachataChoices = {
+            {2, 1, 2, 1, 1, 1, 0},
+            {0, 1, 1, 0, 1, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 1, 0, 0, 2, 0, 0},
+            {2, 1, 1, 1, 2, 2, 0},
+            {1, 0, 2, 0, 1, 1, 0},
+            {1, 2, 2, 0, 2, 1, 0},
+            {0, 1, 2, 1, 2, 2, 0},
+            {1, 2, 2, 1, 0, 1, 0},
+            {1, 2, 0, 1, 2, 2, 0},
+            {0, 2, 0, 0, 2, 1, 0},
+            {1, 1, 0, 0, 0, 0, 0},
+            {1, 1, 2, 2, 2, 2, 0},
+            {2, 1, 2, 2, 1, 0, 0},
+            {1, 1, 1, 1, 1, 1, 0},
+            {2, 1, 1, 2, 0, 1, 0},
+            {1, 2, 0, 0, 2, 0, 0},
+            {1, 2, 2, 1, 2, 1, 0},
+            {0, 0, 1, 0, 0, 0, 0},
+            {0, 2, 2, 0, 1, 1, 0},
+            {0, 0, 0, 0, 1, 1, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 2, 1, 0, 2, 0, 0},
+            {2, 1, 2, 2, 1, 1, 0},
+            {1, 1, 1, 2, 2, 1, 0},
+            {0, 1, 2, 2, 1, 0, 0},
+            {2, 1, 2, 2, 1, 1, 0},
+            {0, 1, 1, 0, 1, 1, 0},
+            {2, 1, 2, 2, 1, 1, 0},
+            {1, 2, 2, 1, 2, 1, 0},
+            {2, 1, 1, 1, 2, 1, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 2, 2, 0, 1, 1, 0},
+            {0, 2, 2, 0, 1, 1, 0},
+            {1, 0, 0, 1, 0, 0, 1},
+            {0, 1, 2, 1, 1, 1, 1},
+            {0, 1, 2, 2, 2, 1, 1},
+            {0, 0, 2, 0, 0, 2, 1},
+            {0, 2, 2, 0, 2, 1, 1},
+            {1, 1, 2, 1, 0, 2, 1}
     };
 
-    static boolean[][] participantsDiscoveryChoices = {
-            {false, false, false, false, false, false},
-            {true,  true,  false, false, false, false},
-            {true,  false, false, false, false, false},
-            {false, true,  false, false, true,  true},
-            {false, false, false, false, false, false},
-            {false, false, false, false, false, false},
-            {false, false, false, false, false, false},
-            {false, false, false, false, false, false},
-            {false, true,  true,  false, false, false},
-            {true,  true,  false, false, false, true},
-            {false, false, false, false, false, false},
-            {true,  true,  false, false, false, false},
-            {false, false, false, false, false, false},
-            {false, true,  false, false, false, false},
-            {false, false, true,  false, false, true},
-            {false, false, true,  false, false, false},
-            {false, false, false, true,  true,  false},
-            {false, true,  false, true,  false, true},
-            {false, true,  false, false, false, true},
-            {true,  true,  false, false, false, false},
-            {false, false, false, false, false, false},
-            {true,  true,  false, true,  false, true},
-            {false, false, false, true,  true,  true},
-            {false, true,  false, false, false, false},
-            {true,  true,  false, true,  false, false},
-            {false, false, false, false, true,  false},
-            {false, true,  false, false, false, false},
-            {false, false, false, false, false, false},
-            {false, true,  false, false, false, false},
-            {false, false, false, false, false, false},
-            {false, true,  false, false, false, false},
-            {false, false, true,  true,  true,  true},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
-            {false,  false,  false,  false, false, false, false, false},
+    static int[][] participantsDiscoveryChoices = {
+            {1, 1, 0, 0, 1, 1},
+            {2, 2, 0, 0, 0, 1},
+            {2, 1, 1, 0, 0, 0},
+            {0, 2, 0, 1, 2, 2},
+            {0, 1, 1, 1, 1, 0},
+            {0, 1, 0, 1, 1, 1},
+            {0, 1, 1, 0, 1, 0},
+            {1, 1, 0, 1, 1, 0},
+            {1, 2, 2, 1, 0, 0},
+            {2, 2, 0, 1, 1, 2},
+            {1, 1, 1, 1, 1, 1},
+            {2, 2, 1, 1, 1, 1},
+            {0, 0, 0, 0, 0, 0},
+            {0, 2, 0, 1, 0, 0},
+            {0, 0, 2, 0, 0, 2},
+            {0, 0, 2, 0, 0, 1},
+            {0, 0, 0, 2, 2, 1},
+            {1, 2, 0, 2, 0, 2},
+            {0, 2, 1, 1, 1, 2},
+            {2, 2, 1, 0, 0, 0},
+            {1, 1, 0, 0, 1, 1},
+            {2, 2, 1, 2, 0, 2},
+            {0, 1, 0, 2, 2, 2},
+            {0, 2, 0, 1, 0, 0},
+            {2, 2, 1, 2, 1, 1},
+            {0, 1, 0, 1, 2, 0},
+            {0, 2, 0, 1, 0, 0},
+            {0, 0, 1, 0, 0, 1},
+            {0, 2, 0, 1, 1, 0},
+            {1, 1, 1, 1, 1, 1},
+            {1, 2, 1, 1, 1, 1},
+            {1, 1, 2, 2, 2, 2},
+            {0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0},
+            {1, 1, 2, 2, 0, 1},
+            {0, 1, 0, 1, 1, 1},
+            {1, 1, 0, 1, 1, 2},
+            {0, 0, 0, 0, 1, 1},
+            {2, 2, 1, 2, 0, 1},
+            {1, 1, 0, 1, 2, 1}
     };
 
     static int[] salsaVotes;
@@ -359,22 +275,22 @@ public class Main {
         /* Data cleaning : remove profs that voted for their own class BEFORE using the data */
         for (int s = 0; s < salsaProfs.length; ++s) {
             for (Integer prof : salsaProfs[s]) {
-                participantsSalsaChoices[prof][s] = false;
+                participantsSalsaChoices[prof][s] = 0;
             }
         }
         for (int b = 0; b < bachataProfs.length; ++b) {
             for (Integer prof : bachataProfs[b]) {
-                participantsBachataChoices[prof][b] = false;
+                participantsBachataChoices[prof][b] = 0;
             }
         }
         for (int d = 0; d < discoveryProfs.length; ++d) {
             for (Integer prof : discoveryProfs[d]) {
-                participantsDiscoveryChoices[prof][d] = false;
+                participantsDiscoveryChoices[prof][d] = 0;
             }
         }
 
         /* Hard constraint: Profs cannot teach when they are unavailable, like due to duties. (automated unless special case Patrick is not the masterchef anymore)
-        * Note: these are not used for loss computation, so patrick does not get a boost in the loss, which is correct */
+         * Note: these are not used for loss computation, so patrick does not get a boost in the loss, which is correct */
         Set<Integer>[] salsaProfsUnavailable = new Set[salsaClasses.length];
         Set<Integer>[] bachataProfsUnavailable = new Set[bachataClasses.length];
         Set<Integer>[] discoveryProfsUnavailable = new Set[discoveryClasses.length];
@@ -584,8 +500,8 @@ public class Main {
                                     List<Integer>[] salsaProfs, List<Integer>[] bachataProfs, List<Integer>[] discoveryProfs,
                                     Set<Integer>[] duties, int i, int[] missingPreferences) {
         Set<Integer> interestedInSalsa = salsa[bestGuess.timeSlot[CLASSROOM_ONE_ID]];
-        Set<Integer> interestedInBachata =  bachata[bestGuess.timeSlot[CLASSROOM_TWO_ID]];
-        Set<Integer> interestedInThirdClass =  bestGuess.hasClassThreeSalsa ? salsa[bestGuess.timeSlot[CLASSROOM_THREE_ID]] : discovery[bestGuess.timeSlot[CLASSROOM_THREE_ID]];
+        Set<Integer> interestedInBachata = bachata[bestGuess.timeSlot[CLASSROOM_TWO_ID]];
+        Set<Integer> interestedInThirdClass = bestGuess.hasClassThreeSalsa ? salsa[bestGuess.timeSlot[CLASSROOM_THREE_ID]] : discovery[bestGuess.timeSlot[CLASSROOM_THREE_ID]];
         Set<Integer> interestedInSB = new HashSet<>(interestedInSalsa), interestedInST = new HashSet<>(interestedInSalsa), interestedInBT = new HashSet<>(interestedInBachata);
         interestedInSB.retainAll(interestedInBachata);
         interestedInST.retainAll(interestedInThirdClass);
@@ -651,18 +567,18 @@ public class Main {
     }
 
     static String printA(BestGuess bestGuess) {
-        return salsaClasses[bestGuess.timeSlot[CLASSROOM_ONE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_ONE_ID]] +  ")" + "\t\t";
+        return salsaClasses[bestGuess.timeSlot[CLASSROOM_ONE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_ONE_ID]] + ")" + "\t\t";
     }
 
     static String printB(BestGuess bestGuess) {
-        return bachataClasses[bestGuess.timeSlot[CLASSROOM_TWO_ID]] + "(" + bachataVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]] +  ")" + "\t\t";
+        return bachataClasses[bestGuess.timeSlot[CLASSROOM_TWO_ID]] + "(" + bachataVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]] + ")" + "\t\t";
     }
 
     static String printC(BestGuess bestGuess) {
         if (bestGuess.hasClassThreeSalsa) {
-            return salsaClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] +  ")" + "\t\t";
+            return salsaClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + ")" + "\t\t";
         }
-        return discoveryClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + discoveryVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] +  ")" + "\t\t";
+        return discoveryClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + discoveryVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + ")" + "\t\t";
 
     }
 
@@ -715,7 +631,7 @@ public class Main {
                 pWeight[p] = numPreferences[p] == 0 ? 0.0f : TIME_SLOTS / (float) numPreferences[p];
             }
             this.heuristicTarget = (float) (Arrays.stream(salsaVotes).sum() + Arrays.stream(bachataVotes).sum() + Arrays.stream(discoveryVotes).sum())
-                        / (salsaVotes.length + bachataVotes.length + discoveryVotes.length);
+                    / (salsaVotes.length + bachataVotes.length + discoveryVotes.length);
             initPenalties();
             System.out.println("--- Average " + heuristicTarget);
         }
@@ -742,7 +658,7 @@ public class Main {
                     continue;
                 }
                 int classMask = 1 << (offset + currClass);
-                boolean isClassNotPicked =  (classesSubset & classMask) > 0;
+                boolean isClassNotPicked = (classesSubset & classMask) > 0;
                 if (isClassNotPicked) {
                     timeSlot[CLASSROOM_ONE_ID] = currClass;
                     BestGuess someGuess = guessBachata(timeSlotId, classesSubset - classMask, extraSalsa, timeSlot);
@@ -764,7 +680,7 @@ public class Main {
                     continue;
                 }
                 int classMask = 1 << (offset + currClass);
-                boolean isClassNotPicked =  (classesSubset & classMask) > 0;
+                boolean isClassNotPicked = (classesSubset & classMask) > 0;
                 if (isClassNotPicked) {
                     timeSlot[CLASSROOM_TWO_ID] = currClass;
                     BestGuess someGuess = guessDiscovery(timeSlotId, classesSubset - classMask, extraSalsa, timeSlot);
@@ -788,7 +704,7 @@ public class Main {
                         continue;
                     }
                     int classMask = 1 << (offset + currClass);
-                    boolean isClassNotPicked =  (classesSubset & classMask) > 0;
+                    boolean isClassNotPicked = (classesSubset & classMask) > 0;
                     if (isClassNotPicked) {
                         timeSlot[CLASSROOM_THREE_ID] = currClass;
                         BestGuess someGuess = endOfTimeSlot(timeSlotId, classesSubset - classMask, false, true, timeSlot);
@@ -808,7 +724,7 @@ public class Main {
                     continue;
                 }
                 int classMask = 1 << (offset + currClass);
-                boolean isClassNotPicked =  (classesSubset & classMask) > 0;
+                boolean isClassNotPicked = (classesSubset & classMask) > 0;
                 if (isClassNotPicked) {
                     timeSlot[CLASSROOM_THREE_ID] = currClass;
                     BestGuess someGuess = endOfTimeSlot(timeSlotId, classesSubset - classMask, extraSalsa, false, timeSlot);
@@ -882,7 +798,7 @@ public class Main {
 
         float computeScore(int timeSlotId, int classesSubset, int[] timeSlot, boolean hasClassThreeSalsa) {
             float loss = hasClassThreeSalsa ? salsaPenalty[timeSlotId][timeSlot[CLASSROOM_ONE_ID]][timeSlot[CLASSROOM_TWO_ID]][timeSlot[CLASSROOM_THREE_ID]]
-                                        :   penalty[timeSlotId][timeSlot[CLASSROOM_ONE_ID]][timeSlot[CLASSROOM_TWO_ID]][timeSlot[CLASSROOM_THREE_ID]];
+                    : penalty[timeSlotId][timeSlot[CLASSROOM_ONE_ID]][timeSlot[CLASSROOM_TWO_ID]][timeSlot[CLASSROOM_THREE_ID]];
             // Styling must be at a specific time
 //            if (timeSlot[CLASSROOM_ONE_ID] == STYLING && timeSlotId != STYLING_TIME) {
 //                loss += 100000;
@@ -926,6 +842,7 @@ public class Main {
         float score;
         int[] timeSlot;
         boolean hasClassThreeSalsa;
+
         BestGuess(float score) {
             this.score = score;
             timeSlot = new int[NUM_CLASSROOMS];
