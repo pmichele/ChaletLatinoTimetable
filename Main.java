@@ -1039,40 +1039,6 @@ public class Main {
                 loss += 10000000;
             }
 
-//            if (!isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == CALENA && timeSlotId == SATURDAY_LUNCH) {
-//                loss += 10000000;
-//            }
-
-
-//            if (!isClassThreeSalsa && timeSlot[CLASSROOM_ONE_ID] == URBAN_SALSA && timeSlot[CLASSROOM_THREE_ID] == SAMBA) {
-//                loss += 10000000;
-//            }
-//            if (!isClassThreeSalsa && timeSlot[CLASSROOM_ONE_ID] == SKANDER_MUSIC && timeSlot[CLASSROOM_THREE_ID] == SAMBA) {
-//                loss += 10000000;
-//            }
-//
-
-//            if (isClassThreeSalsa && (timeSlot[CLASSROOM_ONE_ID] == AFRORUMBA && timeSlot[CLASSROOM_THREE_ID] == SKANDER_MUSIC)
-//                    || timeSlot[CLASSROOM_THREE_ID] == AFRORUMBA && timeSlot[CLASSROOM_ONE_ID] == SKANDER_MUSIC) {
-//                loss += 10000000;
-//            }
-
-            // Note: styling has been removed from the program so it's a placeholder for empty
-//            if (!isClassThreeSalsa && (timeSlot[CLASSROOM_ONE_ID] == STYLING && timeSlot[CLASSROOM_THREE_ID] == SAMBA)) {
-//                loss += 10000000;
-//            }
-//            if (!isClassThreeSalsa && timeSlot[CLASSROOM_ONE_ID] == STYLING && timeSlot[CLASSROOM_THREE_ID] == REGGAE) {
-//                loss += 10000000;
-//            }
-//            if (isClassThreeSalsa && (timeSlot[CLASSROOM_ONE_ID] == AFRORUMBA && timeSlot[CLASSROOM_THREE_ID] == STYLING)
-//                    || timeSlot[CLASSROOM_THREE_ID] == AFRORUMBA && timeSlot[CLASSROOM_ONE_ID] == STYLING) {
-//                loss += 10000000;
-//            }
-//            boolean isStyling = timeSlot[CLASSROOM_ONE_ID] == STYLING || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == STYLING);
-//            if (isStyling && timeSlotId != STYLING_TIME) {
-//                loss += 10000000;
-//            }
-
 
             /* Hyperparameters for soft constraints*/
             /* Below are some examples that are reasonable to fine tune happiness of the people attending the workshops.
