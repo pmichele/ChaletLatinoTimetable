@@ -13,335 +13,388 @@ import java.util.Set;
 public class Main {
 
     static final int TIME_SLOTS = 7,
-    CLASSROOM_ONE_ID = 0,
-    CLASSROOM_TWO_ID = 1,
-    CLASSROOM_THREE_ID = 2,
-    NUM_CLASSROOMS = 3;
+            CLASSROOM_ONE_ID = 0,
+            CLASSROOM_TWO_ID = 1,
+            CLASSROOM_THREE_ID = 2,
+            NUM_CLASSROOMS = 3;
     static final float INFINITY = Integer.MAX_VALUE, SCORE_LIMIT = 1_000_000_000.0f;
-    public static final int SAMBA = 3;
     public static final int LAST_SATURDAY_TIMESLOT = 4;
-    public static final int YOS_2 = 6;
-    public static final int CALENA = 5;
+    public static final int CALENA = 6;
     public static final int AFTER_SATURDAY_LUNCH = 2;
     public static final float INTEREST_WEIGHT = 0.2f;
-    public static final int STYLING_HISTORY_ID = 5; // styling has been replaced with history class
     public static final int REGGAE = 1;
-    public static final int URBAN_SALSA = 1;
-    public static final int SKANDER_MUSIC = 2;
-    public static final int SALSA_FUSION = 4;
-    public static final int STYLING_TIME = 4;
-    public static final int VALENTIN_PW = 3;
-    public static final int MARLA_PW = 6;
-    public static final int KAI_PW = 7;
+    public static final int URBAN_SALSA = 0;
     public static final int NOT_INTERESTED = 0;
     public static final int I_DONT_WANNA_MISS_IT = 2;
     public static final int INTERESTED = 1;
-    public static final int ILA = 11;
-    public static final int LISON = 15;
-    public static final int TEYA = 55;
-    public static final int BORIS = 46;
-    public static final int YOS = 58;
-    public static final int JULIE = 4;
-    public static final int ROBIN = 45;
-    public static final int MATTHIEU = 50;
-    public static final int PA = 2;
-    public static final int ESTE = 34;
-    public static final int LUCA = 14;
-    public static final int VALENTIN = 49;
+    public static final int ILA = 26;
+    public static final int LISON = 39;
+    public static final int TEYA = 74;
+    public static final int JULIE = 28;
+    public static final int PA = 58;
+    public static final int PATRICK = 60;
+    public static final int LUCA = 64;
     public static final int FIRST_CLASS = 0;
 
     /* Dataset */
 
-    static List<Integer> interSalsa = Arrays.asList(2,3,6,7,STYLING_HISTORY_ID);
+    static List<Integer> interSalsa = Arrays.asList(0, 3, 4, 6);
     static String[] salsaClasses = new String[]{
-            "Salsa pasitos afro-rumba (Advanced)  —  Ila",
-            "Salsa urban style (Advanced) — PA y Ila",
-            "Salsa musicality: catching breaks (Intermediate) — Skander y Maja",
-            "Salsa partnerwork (Intermediate) — Valentin y Lison",
-            "Salsa fusion (Advanced) — PA y Este",
-            "Salsa history (All levels)", // "Salsa men vs lady styling battle (Advanced) — PA y Este", <- removed from the program
-            "Salsa leading and following (Intermediate) — Robin y Marla",
-            "Salsa partnerwork (Intermediate) — Robin y Kai"
+            "Urban Salsa (Intermediate) – PA & Ilaria",
+            "Afro-Cuban Motion (Advanced) – Ilaria",
+            "Salsa Cubana Man Styling (Advanced) – PA",
+            "Son Cubano (Intermediate)– Laurent & Mariana",
+            "Musicality - Deep Dive (Intermediate) – Laurent & Mariana",
+            "Salsa Figures (Advanced) – Anaïse & Kai",
+            "Salsa Caleña (Beginner-Intermediate) – Luca",
     };
-    static List<Integer> interBachata = Arrays.asList(1,2,4,5);
+    static List<Integer> interBachata = Arrays.asList(0, 3, 4, 5);
     static String[] bachataClasses = new String[]{
-            "Bachata fusion (Advanced) — Lison y Patrick",
-            "Bachata musicality parterwork (Intermediate) — Patrick",
-            "Bachata sensual 1 (Intermediate) — Boris y Teya",
-            "Bachata sensual 2 (Advanced) — Boris y Teya",
-            "Bachata footwork (Intermediate) — Yoss",
-            "Bachata moderna (Intermediate) — Yoss y Julie",
-            "Bachata sensual connection (Advanced) — Yoss y Lison"
+            "Funky Bachata Moves (Intermediate) — Teya & Alic",
+            "Bachata fusion (Advanced) – Lison & Patrick",
+            "Bachazouk basics (Inter-Advanced) – Patrick & Julie",
+            "Pasitos Flow — Boris & Morgana",
+            "Styling in partnerwork — Boris & Morgana",
+            "Bachata Sensual (Intermediate) – Alex & Julia",
     };
     static String[] discoveryClasses = new String[]{
-            "Hip hop (All levels) — Ila",
-            "Reggaeton (All levels) — Ila",
-            "Jive (All levels) — Lison y Luca",
-            "Samba (All levels) — Virginia",
-            "Cha-Cha-Cha (All levels) — Heidi y Dennis",
-            "Salsa caleña (All levels) — Luca"
+            "Lyrical hip hop — Ilaria",
+            "Reggaeton — Ilaria",
+            "Viennese Waltz — Lison & Luca",
+            "Ballroom Rumba — Lison & Luca",
+            "Easy Tricks & Dips – Anaïse & Kai",
+            "Aerial Lifts – Anaïse & Kai",
+            "Leader & Follower - Find your style — Luca & Lison",
     };
-    static int PATRICK = 41;
-        static String[] participants = {
-            "Adrian Pfiffner",
-            "Marc Blöchlinger",
-            "P.A.",
-            "Léa Consuegra",
-            "Julie Hernandez",
-            "Mariana Leon",
-            "Laurine Gasser",
-            "Laurent Bugnard",
-            "Noa Varela Cinquegrani",
-            "Milena Schuhmacher",
-            "Annamira O'Toole",
-            "Ilaria Ricchi",
-            "Kaisu Hiltunen",
-            "Kai Ott",
-            "Ruef Luca",
-            "Lison Ravassard",
-            "Larissa Klose",
-            "Jose Antonio Simon Greminger",
-            "Ivan Zivadinovic",
-            "Skander Moalla",
-            "Richard Santiago",
-            "Michele Pettinato",
-            "Yannick",
-            "Jusef Akbari",
-            "Chloé Monin",
-            "Fabian Weber",
-            "Elena Yfantis",
-            "David Barioni",
-            "Sabrina Kleesattel",
-            "Carolin Giel",
-            "Catarina Meier",
-            "Maja Stamenkovic",
-            "Alberto Zirondelli",
-            "Céline Wilhelm",
-            "Estefania Arroyo",
-            "Daniela Correa Orozco",
-            "Merel Kuijs",
-            "Diego Clavijo",
-            "Igor Krawczuk",
-            "Heidi Lee",
-            "Tristan Reinhard",
-            "Patrick Sgrò",
-            "Niál Perry",
-            "Yosri Mami",
-            "Mélanie Kugler",
-            "Robin Rahel Renggli",
-            "Boris Bergsma",
-            "Helen Risch",
-            "Marla Kohli",
-            "Valentin Gobert",
-            "Matthieu",
-            "Natali Gomez",
-            "Sandra Valero Cardoso",
-            "Morgana Grillo", // not coming
-            "Dennis Makarov",
-            "Teya Petrova",
-            "Alic Kaufmann",
-            "Claudia La Valle",
-            "Yoss",
-            "Florian",
-            "Ulysse",
-            "NA",
+    static String[] participants = {
+            "Alberto Zirondelli", //0
+            "Alessandra Aloulou Raposo", //1
+            "Alexandre Elsig", //2
+            "Alic Kaufmann", //3
+            "Alice Moraz", //4
+            "Alicia Pérez Domouso", //5
+            "Alina Brüllhardt", //6
+            "Anaïse Vallée", //7
+            "Annamira O'Toole", //8
+            "Asia Lahici", //9
+            "Brian Lupton", //10
+            "Brune Bettler", //11
+            "Céline", //12
+            "Claudia La Valle", //13
+            "David Arroyave", //14
+            "David Barioni", //15
+            "Dennis Makarov", //16
+            "Diego Clavijo", //17
+            "Dylan Samuelian", //18
+            "Fabrice Demière", //19
+            "Felix Hans Michel Grimberg", //20
+            "Georg Teufelberger", //21
+            "Géraldine Keller", //22
+            "Giuseppe Marino", //23
+            "Heidi", //24
+            "Igor Krawczuk", //25
+            "Ilaria Ricchi", //26
+            "Janine Vögele", //27
+            "Julie Hernandez", //28
+            "Jusef Akbari", //29
+            "Kai Ott", //30
+            "Kaisu Hiltunen", //31
+            "Kalila Hörler", //32
+            "Kevin Steiner", //33
+            "Kruszynska Julia", //34
+            "Larissa Schuh", //35
+            "Laszlo Demko", //36
+            "Laurent Bugnard", //37
+            "Laurine Gasser", //38
+            "Lison Ravassard", //39
+            "Lissy Reim", //40
+            "Lucijana Stanic", //41
+            "Maja Stamenkovic", //42
+            "Manuel Bernal Lecina", //43
+            "Mariana Leon", //44
+            "Mariona Lopez Gil", //45
+            "Matteo Mancuso", //46
+            "Matthieu", //47
+            "Mélanie Kugler", //48
+            "Melany Falcon", //49
+            "Michele Pettinato", //50
+            "Miguel BASANTE-BEDOYA", //51
+            "Mihael Vujicic", //52
+            "Milena Schuhmacher", //53
+            "Natali Gomez", //54
+            "Nathalie Aney Guzmán Santa Cruz", //55
+            "Noa Varela Cinquegrani", //56
+            "Oleg Pulatov", //57
+            "P.A.", //58
+            "Pablo Garcia", //59
+            "Patrick Sgrò", //60
+            "Reto Zihlmann", //61
+            "Richard Santiago", //62
+            "Romie Lee", //63
+            "Ruef Luca", //64
+            "Ruth Tuschewski", //65
+            "Saira Vögeli", //66
+            "Sami Bouziri", //67
+            "Samuel Widmer", //68
+            "Sara Zatezalo", //69
+            "Seungchan Hwang", //70
+            "Sofia De Angelus", //71
+            "Sophia Boyer", //72
+            "Talissa Rodriguez", //73
+            "Teya Petrova", //74
+            "Timo Spring", //75
+            "Tristan Reinhard", //76
+            "Veronica Edwards", //77
+            "vladyslav korobeynyk", //78
     };
 
 
     static int[][] participantsSalsaChoices = {
-            {2, 2, 2, 1, 1, 1, 1, 1},
-            {0, 0, 2, 2, 0, 1, 2, 2},
-            {1, 2, 0, 0, 2, 2, 0, 0},
-            {2, 2, 2, 1, 2, 0, 1, 1},
-            {0, 0, 1, 1, 1, 1, 1, 1},
-            {2, 0, 2, 2, 1, 2, 1, 1},
-            {0, 0, 1, 2, 0, 0, 1, 1},
-            {2, 1, 2, 2, 0, 1, 1, 1},
-            {1, 1, 1, 0, 2, 2, 0, 0},
-            {2, 2, 1, 1, 1, 1, 1, 1},
-            {0, 0, 2, 2, 0, 1, 2, 2},
-            {2, 2, 1, 0, 2, 1, 0, 0},
-            {0, 1, 1, 2, 1, 2, 1, 1},
-            {2, 0, 0, 0, 0, 0, 0, 0},
-            {0, 1, 1, 2, 1, 2, 0, 1},
-            {0, 0, 0, 2, 1, 2, 0, 0},
-            {2, 0, 2, 1, 0, 0, 0, 1},
-            {2, 0, 2, 1, 1, 2, 0, 0},
-            {0, 0, 2, 2, 0, 1, 2, 2},
-            {2, 1, 2, 1, 1, 2, 1, 1},
-            {2, 1, 2, 2, 1, 1, 2, 2},
-            {2, 2, 2, 0, 1, 2, 0, 0},
-            {2, 0, 2, 1, 0, 1, 1, 1},
-            {0, 0, 0, 1, 2, 0, 1, 2},
-            {1, 0, 1, 1, 2, 2, 0, 1},
-            {1, 0, 2, 0, 2, 0, 1, 2},
-            {0, 0, 0, 1, 2, 0, 1, 2},
-            {0, 1, 0, 1, 1, 2, 1, 1},
-            {0, 0, 0, 1, 2, 0, 1, 2},
-            {1, 1, 2, 2, 1, 1, 2, 1},
-            {2, 2, 1, 1, 2, 1, 0, 0},
-            {2, 2, 2, 1, 1, 1, 1, 1},
-            {0, 0, 2, 2, 2, 1, 2, 2},
-            {0, 0, 2, 2, 2, 1, 2, 2},
-            {2, 2, 1, 0, 2, 2, 0, 0},
-            {2, 2, 1, 0, 0, 1, 1, 1},
-            {1, 1, 2, 1, 1, 0, 1, 2},
-            {2, 1, 2, 2, 2, 1, 2, 2},
-            {2, 2, 2, 1, 0, 0, 1, 0},
-            {1, 1, 1, 1, 2, 2, 1, 1},
-            {0, 0, 1, 2, 1, 0, 1, 2},
-            {1, 2, 1, 0, 2, 0, 0, 0},
-            {0, 0, 1, 2, 1, 1, 2, 2},
-            {2, 0, 0, 1, 0, 1, 0, 0},
-            {0, 0, 2, 2, 0, 0, 0, 1},
-            {2, 2, 0, 0, 1, 0, 0, 0},
-            {0, 0, 1, 1, 0, 0, 1, 1},
-            {2, 2, 2, 1, 1, 1, 1, 1},
-            {2, 1, 2, 0, 1, 1, 2, 1},
-            {1, 2, 1, 2, 2, 0, 1, 1},
-            {2, 1, 2, 1, 1, 1, 1, 1},
-            {2, 0, 2, 1, 1, 1, 1, 1},
-            {0, 0, 2, 2, 0, 1, 2, 2},
-            {0, 0, 0, 0, 0, 0, 0, 0}, //{0, 0, 1, 0, 0, 0, 1, 1},
-            {0, 1, 2, 1, 1, 2, 2, 2},
-            {2, 1, 2, 1, 2, 2, 1, 1},
-            {0, 0, 2, 0, 0, 0, 0, 0},
-            {1, 1, 1, 2, 1, 2, 1, 2},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-};
-    static int[][] participantsBachataChoices = {
-            {2, 1, 2, 1, 1, 1, 0},
-            {0, 1, 1, 0, 1, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 1, 0, 0, 2, 0, 0},
-            {2, 1, 1, 1, 2, 2, 0},
-            {1, 0, 2, 0, 1, 1, 0},
-            {1, 2, 2, 0, 2, 1, 0},
-            {0, 1, 2, 1, 2, 2, 0},
-            {1, 2, 2, 1, 0, 1, 0},
-            {1, 2, 0, 1, 2, 2, 0},
-            {0, 2, 0, 0, 2, 1, 0},
-            {1, 1, 0, 0, 0, 0, 0},
-            {1, 1, 2, 2, 2, 2, 0},
-            {2, 1, 2, 2, 1, 0, 0},
-            {1, 1, 1, 1, 1, 1, 0},
-            {2, 1, 1, 2, 0, 1, 0},
-            {1, 2, 0, 0, 2, 0, 0},
-            {1, 2, 2, 1, 2, 1, 0},
-            {0, 0, 1, 0, 0, 0, 0},
-            {0, 2, 2, 0, 1, 1, 0},
-            {0, 0, 0, 0, 1, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 2, 1, 0, 2, 0, 0},
-            {2, 1, 2, 2, 1, 1, 0},
-            {1, 1, 1, 2, 2, 1, 0},
-            {0, 1, 2, 2, 1, 0, 0},
-            {2, 1, 2, 2, 1, 1, 0},
-            {0, 1, 1, 0, 1, 1, 0},
-            {2, 1, 2, 2, 1, 1, 0},
-            {1, 2, 2, 1, 2, 1, 0},
-            {2, 1, 1, 1, 2, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 2, 2, 0, 1, 1, 0},
-            {0, 2, 2, 0, 1, 1, 0},
-            {1, 0, 0, 1, 0, 0, 1},
-            {0, 1, 2, 1, 1, 1, 1},
-            {0, 1, 2, 2, 2, 1, 1},
-            {0, 0, 2, 0, 0, 2, 1},
-            {0, 2, 2, 0, 2, 1, 1},
-            {1, 1, 2, 1, 0, 2, 1},
-            {2, 2, 2, 2, 1, 1, 2},
-            {2, 2, 0, 0, 1, 0, 1},
-            {1, 1, 0, 2, 2, 2, 2},
-            {1, 1, 1, 2, 2, 2, 2},
-            {0, 1, 2, 0, 0, 1, 0},
-            {1, 0, 0, 1, 0, 0, 1},
-            {1, 1, 1, 1, 1, 1, 1},
-            {1, 2, 1, 1, 1, 1, 1},
-            {0, 1, 2, 2, 2, 1, 1},
-            {1, 1, 1, 2, 0, 2, 1},
-            {0, 1, 0, 0, 1, 1, 0},
-            {0, 1, 0, 0, 1, 1, 0},
-            {0, 2, 1, 1, 2, 2, 0},
-            {0, 0, 0, 0, 0, 0, 0}, //{1, 1, 1, 2, 1, 2, 2},
-            {0, 1, 1, 0, 0, 0, 0},
-            {2, 2, 2, 2, 2, 2, 2},
-            {0, 2, 2, 2, 0, 0, 0},
-            {0, 2, 1, 1, 2, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-};
+            {2, 2, 2, 1, 2, 2, 0}, //0
+            {2, 0, 0, 1, 1, 2, 2}, //1
+            {0, 0, 0, 0, 0, 0, 0}, //2
+            {0, 2, 0, 0, 2, 0, 0}, //3
+            {2, 2, 0, 2, 1, 1, 0}, //4
+            {2, 1, 0, 1, 2, 2, 1}, //5
+            {2, 0, 0, 0, 1, 1, 1}, //6
+            {1, 2, 0, 1, 1, 2, 1}, //7
+            {2, 1, 0, 1, 1, 0, 2}, //8
+            {1, 2, 0, 2, 2, 1, 2}, //9
+            {1, 1, 2, 1, 2, 2, 0}, //10
+            {1, 1, 0, 0, 2, 2, 0}, //11
+            {2, 1, 0, 0, 2, 2, 0}, //12
+            {1, 2, 0, 1, 2, 2, 1}, //13
+            {2, 0, 0, 1, 1, 2, 2}, //14
+            {0, 0, 0, 2, 2, 1, 2}, //15
+            {2, 2, 2, 0, 1, 1, 1}, //16
+            {1, 1, 1, 2, 2, 2, 1}, //17
+            {2, 0, 0, 0, 1, 1, 2}, //18
+            {1, 0, 1, 0, 1, 1, 0}, //19
+            {1, 1, 1, 0, 1, 2, 1}, //20
+            {1, 1, 2, 1, 2, 0, 1}, //21
+            {0, 1, 0, 0, 0, 1, 0}, //22
+            {1, 1, 2, 1, 1, 2, 0}, //23
+            {2, 1, 1, 1, 2, 1, 1}, //24
+            {2, 1, 1, 1, 2, 1, 0}, //25
+            {2, 2, 0, 1, 1, 0, 0}, //26
+            {2, 1, 0, 0, 2, 1, 1}, //27
+            {1, 0, 0, 0, 1, 1, 1}, //28
+            {1, 1, 2, 2, 1, 2, 1}, //29
+            {1, 1, 1, 0, 0, 2, 0}, //30
+            {2, 2, 1, 1, 2, 2, 1}, //31
+            {1, 1, 0, 1, 2, 1, 1}, //32
+            {1, 2, 2, 0, 1, 0, 0}, //33
+            {2, 1, 1, 1, 1, 0, 2}, //34
+            {1, 2, 0, 0, 1, 1, 0}, //35
+            {1, 0, 0, 0, 1, 2, 1}, //36
+            {1, 1, 1, 2, 2, 1, 1}, //37
+            {0, 0, 0, 2, 2, 1, 1}, //38
+            {0, 0, 0, 0, 0, 0, 2}, //39
+            {1, 1, 0, 0, 1, 2, 0}, //40
+            {1, 1, 1, 1, 2, 0, 0}, //41
+            {1, 2, 0, 2, 2, 1, 0}, //42
+            {1, 0, 1, 2, 1, 1, 0}, //43
+            {2, 2, 0, 2, 2, 1, 0}, //44
+            {2, 0, 0, 2, 1, 2, 2}, //45
+            {0, 0, 0, 1, 2, 2, 1}, //46
+            {1, 2, 1, 1, 2, 1, 1}, //47
+            {2, 1, 0, 1, 0, 1, 2}, //48
+            {0, 0, 0, 1, 1, 0, 2}, //49
+            {1, 2, 1, 0, 0, 0, 1}, //50
+            {1, 2, 1, 2, 1, 2, 2}, //51
+            {1, 1, 2, 1, 2, 2, 0}, //52
+            {2, 1, 2, 2, 1, 2, 1}, //53
+            {2, 0, 0, 2, 2, 0, 2}, //54
+            {2, 0, 0, 2, 2, 2, 2}, //55
+            {1, 2, 0, 2, 2, 0, 1}, //56
+            {0, 0, 2, 2, 2, 2, 0}, //57
+            {2, 2, 2, 0, 1, 0, 0}, //58
+            {1, 1, 2, 1, 2, 1, 1}, //59
+            {2, 2, 1, 0, 1, 0, 1}, //60
+            {1, 0, 1, 0, 0, 2, 0}, //61
+            {1, 1, 1, 2, 2, 2, 1}, //62
+            {2, 1, 0, 1, 1, 2, 1}, //63
+            {0, 0, 1, 0, 1, 2, 2}, //64
+            {2, 0, 0, 1, 2, 0, 1}, //65
+            {1, 0, 0, 0, 2, 1, 0}, //66
+            {1, 0, 2, 2, 2, 2, 1}, //67
+            {1, 0, 1, 2, 2, 1, 2}, //68
+            {1, 0, 0, 2, 2, 2, 1}, //69
+            {2, 1, 1, 1, 2, 1, 1}, //70
+            {0, 2, 0, 0, 0, 0, 2}, //71
+            {2, 1, 0, 1, 0, 2, 0}, //72
+            {2, 2, 0, 2, 2, 0, 0}, //73
+            {1, 1, 0, 0, 1, 0, 1}, //74
+            {1, 0, 1, 1, 1, 1, 1}, //75
+            {1, 0, 1, 0, 0, 2, 0}, //76
+            {0, 2, 0, 1, 2, 1, 2}, //77
+            {0, 2, 2, 0, 2, 2, 2}, //78
 
+    };
+    static int[][] participantsBachataChoices = {
+            {1, 0, 0, 1, 0, 1}, //0
+            {0, 0, 0, 1, 0, 0}, //1
+            {2, 2, 2, 2, 2, 0}, //2
+            {2, 2, 2, 1, 2, 2}, //3
+            {1, 0, 0, 2, 2, 2}, //4
+            {1, 2, 1, 2, 2, 1}, //5
+            {0, 0, 0, 0, 0, 0}, //6
+            {0, 1, 0, 1, 1, 0}, //7
+            {1, 1, 0, 0, 0, 0}, //8
+            {0, 0, 0, 2, 0, 0}, //9
+            {2, 1, 2, 1, 1, 2}, //10
+            {1, 1, 0, 2, 1, 0}, //11
+            {2, 2, 2, 2, 2, 1}, //12
+            {2, 2, 2, 1, 2, 1}, //13
+            {0, 0, 0, 1, 0, 0}, //14
+            {2, 2, 1, 0, 2, 2}, //15
+            {1, 0, 1, 2, 2, 0}, //16
+            {1, 1, 0, 1, 1, 1}, //17
+            {2, 0, 0, 0, 0, 2}, //18
+            {1, 2, 2, 1, 1, 1}, //19
+            {0, 0, 0, 0, 0, 0}, //20
+            {2, 1, 0, 2, 2, 1}, //21
+            {2, 1, 2, 0, 1, 1}, //22
+            {1, 2, 1, 1, 1, 1}, //23
+            {1, 1, 2, 1, 1, 1}, //24
+            {1, 1, 2, 1, 1, 2}, //25
+            {0, 1, 0, 1, 1, 0}, //26
+            {1, 2, 1, 0, 2, 2}, //27
+            {2, 1, 2, 2, 2, 1}, //28
+            {1, 2, 2, 1, 1, 2}, //29
+            {0, 2, 1, 0, 0, 0}, //30
+            {2, 1, 1, 1, 2, 2}, //31
+            {1, 2, 2, 2, 2, 1}, //32
+            {1, 0, 0, 1, 0, 0}, //33
+            {1, 2, 2, 1, 2, 2}, //34
+            {1, 1, 1, 2, 1, 1}, //35
+            {1, 0, 1, 1, 1, 1}, //36
+            {1, 0, 1, 0, 0, 0}, //37
+            {2, 2, 0, 1, 1, 1}, //38
+            {2, 2, 2, 1, 1, 1}, //39
+            {1, 2, 2, 1, 2, 0}, //40
+            {2, 1, 0, 2, 2, 0}, //41
+            {0, 0, 0, 1, 0, 0}, //42
+            {1, 0, 0, 1, 0, 2}, //43
+            {1, 1, 1, 1, 1, 1}, //44
+            {2, 0, 0, 2, 2, 2}, //45
+            {1, 2, 2, 1, 1, 0}, //46
+            {0, 0, 0, 0, 0, 0}, //47
+            {1, 0, 0, 1, 1, 1}, //48
+            {1, 2, 2, 1, 2, 2}, //49
+            {1, 0, 0, 0, 0, 0}, //50
+            {0, 0, 0, 0, 0, 0}, //51
+            {2, 2, 0, 1, 1, 0}, //52
+            {2, 1, 1, 2, 2, 2}, //53
+            {0, 0, 0, 0, 0, 0}, //54
+            {2, 2, 2, 2, 2, 2}, //55
+            {2, 0, 1, 0, 1, 0}, //56
+            {1, 1, 1, 0, 0, 1}, //57
+            {1, 2, 2, 0, 0, 0}, //58
+            {1, 0, 0, 2, 2, 0}, //59
+            {1, 2, 2, 1, 0, 0}, //60
+            {2, 1, 0, 0, 0, 1}, //61
+            {0, 0, 0, 0, 0, 0}, //62
+            {2, 1, 1, 1, 2, 1}, //63
+            {1, 2, 1, 1, 1, 1}, //64
+            {1, 0, 0, 1, 1, 1}, //65
+            {1, 0, 1, 0, 2, 1}, //66
+            {1, 1, 0, 1, 1, 2}, //67
+            {1, 1, 2, 1, 1, 1}, //68
+            {1, 0, 1, 0, 1, 0}, //69
+            {1, 0, 2, 2, 2, 0}, //70
+            {1, 1, 2, 1, 0, 0}, //71
+            {2, 1, 1, 1, 2, 0}, //72
+            {0, 0, 0, 0, 0, 0}, //73
+            {2, 2, 2, 2, 2, 2}, //74
+            {2, 2, 2, 1, 1, 1}, //75
+            {2, 2, 1, 2, 2, 2}, //76
+            {0, 0, 0, 1, 0, 0}, //77
+            {0, 0, 0, 0, 0, 0}, //78
+    };
 
     static int[][] participantsDiscoveryChoices = {
-            {1, 1, 0, 0, 1, 1},
-            {2, 2, 0, 0, 0, 1},
-            {2, 1, 1, 0, 0, 0},
-            {0, 2, 0, 1, 2, 2},
-            {0, 1, 1, 1, 1, 0},
-            {0, 1, 0, 1, 1, 1},
-            {0, 1, 1, 0, 1, 0},
-            {1, 1, 0, 1, 1, 0},
-            {1, 2, 2, 1, 0, 0},
-            {2, 2, 0, 1, 1, 2},
-            {1, 1, 1, 1, 1, 1},
-            {2, 2, 1, 1, 1, 1},
-            {0, 0, 0, 0, 0, 0},
-            {0, 2, 0, 1, 0, 0},
-            {0, 0, 2, 0, 0, 2},
-            {0, 0, 2, 0, 0, 1},
-            {0, 0, 0, 2, 2, 1},
-            {1, 2, 0, 2, 0, 2},
-            {0, 2, 1, 1, 1, 2},
-            {2, 2, 1, 0, 0, 0},
-            {1, 1, 0, 0, 1, 1},
-            {2, 2, 1, 2, 0, 2},
-            {0, 1, 0, 2, 2, 2},
-            {0, 2, 0, 1, 0, 0},
-            {2, 2, 1, 2, 1, 1},
-            {0, 1, 0, 1, 2, 0},
-            {0, 2, 0, 1, 0, 0},
-            {0, 0, 1, 0, 0, 1},
-            {0, 2, 0, 1, 1, 0},
-            {1, 1, 1, 1, 1, 1},
-            {1, 2, 1, 1, 1, 1},
-            {1, 1, 2, 2, 2, 2},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-            {1, 1, 2, 2, 0, 1},
-            {0, 1, 0, 1, 1, 1},
-            {1, 1, 0, 1, 1, 2},
-            {0, 0, 0, 0, 1, 1},
-            {2, 2, 1, 2, 0, 1},
-            {1, 1, 0, 1, 2, 1},
-            {0, 0, 0, 0, 0, 0},
-            {0, 1, 2, 0, 0, 1},
-            {1, 0, 1, 1, 0, 1},
-            {2, 2, 0, 0, 0, 1},
-            {2, 2, 2, 1, 0, 2},
-            {0, 2, 1, 2, 0, 2},
-            {1, 0, 1, 0, 0, 0},
-            {1, 2, 0, 1, 0, 2},
-            {1, 2, 0, 0, 0, 1},
-            {1, 2, 1, 1, 1, 0},
-            {0, 0, 0, 0, 1, 2},
-            {0, 1, 0, 0, 2, 2},
-            {0, 1, 0, 1, 0, 2},
-            {0, 0, 0, 0, 0, 0},//{0, 1, 1, 1, 1, 1},
-            {1, 1, 0, 0, 2, 0},
-            {1, 1, 1, 1, 1, 1},
-            {0, 2, 0, 2, 2, 0},
-            {1, 1, 0, 1, 0, 1},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-};
+            {1, 0, 0, 0, 1, 2, 2}, //0
+            {0, 0, 0, 0, 2, 2, 0}, //1
+            {1, 1, 0, 0, 0, 0, 2}, //2
+            {2, 2, 2, 0, 0, 0, 0}, //3
+            {2, 1, 1, 0, 1, 1, 2}, //4
+            {1, 2, 1, 2, 1, 1, 2}, //5
+            {0, 0, 1, 1, 2, 0, 1}, //6
+            {1, 1, 0, 0, 2, 2, 1}, //7
+            {0, 1, 0, 0, 2, 0, 1}, //8
+            {0, 1, 0, 0, 0, 0, 0}, //9
+            {1, 1, 0, 1, 1, 2, 1}, //10
+            {1, 1, 0, 2, 0, 0, 2}, //11
+            {0, 0, 0, 0, 1, 2, 1}, //12
+            {2, 2, 0, 1, 1, 1, 1}, //13
+            {0, 0, 0, 0, 2, 2, 0}, //14
+            {0, 0, 2, 2, 1, 1, 2}, //15
+            {2, 2, 0, 0, 1, 2, 2}, //16
+            {0, 1, 0, 0, 2, 1, 1}, //17
+            {0, 0, 2, 1, 0, 0, 1}, //18
+            {2, 2, 0, 0, 1, 1, 1}, //19
+            {0, 0, 1, 1, 1, 1, 2}, //20
+            {2, 2, 0, 0, 0, 0, 2}, //21
+            {1, 1, 2, 2, 1, 0, 1}, //22
+            {0, 2, 0, 0, 1, 2, 2}, //23
+            {1, 2, 0, 0, 1, 2, 1}, //24
+            {1, 2, 1, 0, 2, 2, 2}, //25
+            {2, 2, 1, 1, 1, 1, 1}, //26
+            {0, 0, 0, 0, 2, 2, 1}, //27
+            {1, 1, 1, 1, 0, 0, 1}, //28
+            {1, 1, 1, 1, 2, 2, 1}, //29
+            {0, 1, 0, 0, 2, 2, 0}, //30
+            {1, 1, 1, 1, 2, 1, 1}, //31
+            {0, 0, 0, 0, 2, 0, 2}, //32
+            {0, 1, 0, 0, 0, 0, 1}, //33
+            {2, 2, 0, 0, 0, 1, 1}, //34
+            {0, 1, 0, 1, 2, 2, 1}, //35
+            {0, 1, 1, 1, 1, 0, 1}, //36
+            {0, 1, 1, 1, 1, 1, 1}, //37
+            {0, 1, 1, 1, 1, 2, 2}, //38
+            {0, 0, 2, 2, 0, 0, 2}, //39
+            {0, 1, 0, 0, 2, 2, 2}, //40
+            {2, 2, 0, 0, 0, 0, 2}, //41
+            {1, 1, 2, 2, 0, 0, 2}, //42
+            {0, 1, 2, 2, 2, 1, 1}, //43
+            {1, 2, 0, 0, 0, 0, 1}, //44
+            {0, 0, 0, 0, 1, 0, 1}, //45
+            {0, 0, 0, 0, 2, 2, 0}, //46
+            {1, 1, 0, 0, 0, 1, 0}, //47
+            {1, 2, 0, 2, 2, 2, 2}, //48
+            {0, 1, 1, 2, 0, 0, 1}, //49
+            {2, 2, 2, 1, 2, 1, 0}, //50
+            {0, 0, 0, 1, 1, 0, 2}, //51
+            {0, 1, 1, 2, 1, 0, 2}, //52
+            {1, 1, 2, 2, 2, 1, 2}, //53
+            {1, 1, 1, 2, 2, 2, 2}, //54
+            {0, 2, 2, 2, 0, 0, 0}, //55
+            {0, 0, 2, 2, 0, 1, 2}, //56
+            {0, 0, 0, 0, 2, 2, 2}, //57
+            {2, 2, 0, 0, 0, 2, 0}, //58
+            {1, 1, 0, 0, 2, 0, 2}, //59
+            {1, 2, 0, 1, 0, 1, 1}, //60
+            {0, 0, 0, 0, 1, 1, 0}, //61
+            {1, 1, 0, 0, 0, 0, 1}, //62
+            {0, 1, 1, 1, 2, 2, 1}, //63
+            {0, 1, 2, 2, 0, 0, 2}, //64
+            {1, 2, 1, 1, 1, 0, 2}, //65
+            {0, 1, 0, 0, 1, 0, 1}, //66
+            {0, 1, 0, 0, 2, 2, 2}, //67
+            {1, 2, 0, 1, 1, 1, 1}, //68
+            {1, 2, 1, 0, 1, 1, 2}, //69
+            {1, 1, 0, 0, 2, 2, 1}, //70
+            {2, 1, 0, 0, 0, 2, 0}, //71
+            {1, 2, 0, 0, 1, 2, 0}, //72
+            {0, 2, 0, 2, 0, 0, 2}, //73
+            {0, 2, 1, 1, 1, 0, 2}, //74
+            {0, 1, 0, 0, 0, 0, 1}, //75
+            {0, 1, 0, 0, 1, 1, 1}, //76
+            {0, 1, 0, 0, 1, 1, 2}, //77
+            {0, 1, 0, 0, 0, 1, 0}, //78
+
+    };
 
 
     static int[] salsaVotes, salsaInterestVotes;
@@ -351,7 +404,7 @@ public class Main {
     static int[] howManyChoices, howManyInterests;
 
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
 
         salsaVotes = new int[salsaClasses.length];
         bachataVotes = new int[bachataClasses.length];
@@ -364,39 +417,38 @@ public class Main {
         /* People on duties (kitchen). They should be 5 on 1 4 and 6 */
         Set<Integer>[] duties = new Set[TIME_SLOTS];
         duties[0] = Set.of();
-        duties[1] = Set.of(59, 48, 5, 6, 27);
+        duties[1] = Set.of(TEYA, 3, 29, 10, 40);
         duties[2] = Set.of();
         duties[3] = Set.of();
-        duties[4] = Set.of(55, 51, 60, 3, 50);
+        duties[4] = Set.of(44, 47, 54, 73, 45);
         duties[5] = Set.of();
-        duties[6] = Set.of(54, 23, 26, 28, 13);
+        duties[6] = Set.of(43, 1, 14, 5, 11);
 
         /* Teaching duties */
         List<Integer>[] salsaProfs = new List[salsaClasses.length],
                 bachataProfs = new List[bachataClasses.length],
                 discoveryProfs = new List[discoveryClasses.length];
         // see participantNames for the name of the profs
-        salsaProfs[0] = List.of(ILA);
-        salsaProfs[1] = List.of(ILA, PA);
-        salsaProfs[2] = List.of(19, 31);
-        salsaProfs[3] = List.of(VALENTIN, LISON);
-        salsaProfs[4] = List.of(ESTE, PA);
-        salsaProfs[STYLING_HISTORY_ID] = List.of(MATTHIEU);
-        salsaProfs[6] = List.of(ROBIN, 48);
-        salsaProfs[7] = List.of(ROBIN, 13);
-        bachataProfs[0] = List.of(LISON, PATRICK);
-        bachataProfs[1] = List.of(PATRICK);
-        bachataProfs[2] = List.of(BORIS, TEYA);
-        bachataProfs[3] = List.of(BORIS, TEYA);
-        bachataProfs[4] = List.of(YOS);
-        bachataProfs[5] = List.of(YOS, JULIE);
-        bachataProfs[6] = List.of(YOS, LISON);
+        salsaProfs[0] = List.of(ILA, PA);
+        salsaProfs[1] = List.of(ILA);
+        salsaProfs[2] = List.of(PA);
+        salsaProfs[3] = List.of(37, 44);
+        salsaProfs[4] = List.of(37, 44);
+        salsaProfs[5] = List.of(7, 30);
+        salsaProfs[6] = List.of(LUCA);
+        bachataProfs[0] = List.of(TEYA, 3);
+        bachataProfs[1] = List.of(PATRICK, LISON);
+        bachataProfs[2] = List.of(PATRICK, JULIE);
+        bachataProfs[3] = List.of();
+        bachataProfs[4] = List.of();
+        bachataProfs[5] = List.of(2, 34);
         discoveryProfs[0] = List.of(ILA);
         discoveryProfs[1] = List.of(ILA);
         discoveryProfs[2] = List.of(LISON, LUCA);
-        discoveryProfs[3] = List.of();
-        discoveryProfs[4] = List.of(39, 54);
-        discoveryProfs[5] = List.of(LUCA);
+        discoveryProfs[3] = List.of(LISON, LUCA);
+        discoveryProfs[4] = List.of(30, 7);
+        discoveryProfs[5] = List.of(30, 7);
+        discoveryProfs[6] = List.of(LUCA, LISON);
 
         /* Data cleaning : remove profs that voted for their own class BEFORE using the data */
         for (int s = 0; s < salsaProfs.length; ++s) {
@@ -413,29 +465,6 @@ public class Main {
             for (Integer prof : discoveryProfs[d]) {
                 participantsDiscoveryChoices[prof][d] = NOT_INTERESTED;
             }
-        }
-        /* Data cleaning : remove styling and estimate salsa history class using maximum likelihood estimation */
-        for (int p = 0; p < participantsSalsaChoices.length; ++p) {
-            int twos = 0, ones = 0, zeros = 0;
-            for (int s = 0; s < salsaClasses.length; ++s) {
-                if (participantsSalsaChoices[p][s] == I_DONT_WANNA_MISS_IT) {
-                    twos++;
-                } else if (participantsSalsaChoices[p][s] == INTERESTED) {
-                    ones++;
-                } else if (!salsaProfs[s].contains(p)) { // profs self votes don't count in estimation
-                    zeros++;
-                }
-            }
-            int max = Integer.max(Integer.max(zeros, ones), twos);
-            int estimatedVote;
-            if (max == zeros) {
-                estimatedVote = NOT_INTERESTED;
-            } else if (max == ones) {
-                estimatedVote = INTERESTED;
-            } else {
-                estimatedVote = I_DONT_WANNA_MISS_IT;
-            }
-            participantsSalsaChoices[p][STYLING_HISTORY_ID] = estimatedVote;
         }
 
         /* Hard constraint: Profs cannot teach when they are unavailable, like due to duties. (automated unless special case Patrick is not the masterchef anymore, because he wants to be always on duty)
@@ -743,18 +772,18 @@ public class Main {
 
     static String printB(BestGuess bestGuess) {
         return bachataClasses[bestGuess.timeSlot[CLASSROOM_TWO_ID]] + "(" + bachataVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]] + ", "
-                + bachataInterestVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]]  + ", " + (bachataVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]]
+                + bachataInterestVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]] + ", " + (bachataVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]]
                 + INTEREST_WEIGHT * bachataInterestVotes[bestGuess.timeSlot[CLASSROOM_TWO_ID]]) + ")" + "\t\t";
     }
 
     static String printC(BestGuess bestGuess) {
         if (bestGuess.hasClassThreeSalsa) {
             return salsaClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + salsaVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + ", "
-                    + salsaInterestVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] +  ", " + (salsaVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]]
-                    + INTEREST_WEIGHT * salsaInterestVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]])  +  ")" + "\t\t";
+                    + salsaInterestVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + ", " + (salsaVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]]
+                    + INTEREST_WEIGHT * salsaInterestVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]]) + ")" + "\t\t";
         }
         return discoveryClasses[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + "(" + discoveryVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + ", "
-                + discoveryInterestVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] +  ", " + (discoveryVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]]
+                + discoveryInterestVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]] + ", " + (discoveryVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]]
                 + INTEREST_WEIGHT * discoveryInterestVotes[bestGuess.timeSlot[CLASSROOM_THREE_ID]]) + ")" + "\t\t";
 
     }
@@ -807,7 +836,7 @@ public class Main {
                 // method 1 : linear, high penalties for low choices
                 int CUTOFF = TIME_SLOTS + 1;
                 int MAX_COUNT = 14; //TIME_SLOTS * NUM_CLASSROOMS;
-                float m = -1.0f/(MAX_COUNT - TIME_SLOTS);
+                float m = -1.0f / (MAX_COUNT - TIME_SLOTS);
                 float q = 1.0f + TIME_SLOTS / (float) (MAX_COUNT - TIME_SLOTS);
                 weights[p] = howManyChoices[p] < CUTOFF ? (CUTOFF - howManyChoices[p]) : (m * howManyChoices[p] + q);
                 interestWeights[p] = INTEREST_WEIGHT * weights[p];
@@ -1002,26 +1031,26 @@ public class Main {
             float loss = isClassThreeSalsa ? salsaPenalty[timeSlotId][timeSlot[CLASSROOM_ONE_ID]][timeSlot[CLASSROOM_TWO_ID]][timeSlot[CLASSROOM_THREE_ID]]
                     : penalty[timeSlotId][timeSlot[CLASSROOM_ONE_ID]][timeSlot[CLASSROOM_TWO_ID]][timeSlot[CLASSROOM_THREE_ID]];
             // Virginia has to leave sooner
-            if (!isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == SAMBA && timeSlotId != FIRST_CLASS) {
-                loss += 10000000;
-            }
-
-            if (!isClassThreeSalsa && timeSlot[CLASSROOM_ONE_ID] == SKANDER_MUSIC && timeSlot[CLASSROOM_THREE_ID] == HIPHOP) {
-                loss += 10000000;
-            }
-
-            // put history with PW
-            boolean isHistory = timeSlot[CLASSROOM_ONE_ID] == STYLING_HISTORY_ID || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == STYLING_HISTORY_ID);
-            boolean isPartnerwork = timeSlot[CLASSROOM_ONE_ID] == VALENTIN_PW || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == VALENTIN_PW)
-                    || timeSlot[CLASSROOM_ONE_ID] == MARLA_PW || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == MARLA_PW)
-                    || timeSlot[CLASSROOM_ONE_ID] == KAI_PW || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == KAI_PW);
-            if (isHistory && !isPartnerwork) {
-                loss += 10000000;
-            }
-            // put bla bla when people can rest
-            if (isHistory && timeSlotId < AFTER_SATURDAY_LUNCH) {
-                loss += 10000000;
-            }
+//            if (!isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == SAMBA && timeSlotId != FIRST_CLASS) {
+//                loss += 10000000;
+//            }
+//
+//            if (!isClassThreeSalsa && timeSlot[CLASSROOM_ONE_ID] == SKANDER_MUSIC && timeSlot[CLASSROOM_THREE_ID] == HIPHOP) {
+//                loss += 10000000;
+//            }
+//
+//            // put history with PW
+//            boolean isHistory = timeSlot[CLASSROOM_ONE_ID] == STYLING_HISTORY_ID || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == STYLING_HISTORY_ID);
+//            boolean isPartnerwork = timeSlot[CLASSROOM_ONE_ID] == VALENTIN_PW || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == VALENTIN_PW)
+//                    || timeSlot[CLASSROOM_ONE_ID] == MARLA_PW || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == MARLA_PW)
+//                    || timeSlot[CLASSROOM_ONE_ID] == KAI_PW || (isClassThreeSalsa && timeSlot[CLASSROOM_THREE_ID] == KAI_PW);
+//            if (isHistory && !isPartnerwork) {
+//                loss += 10000000;
+//            }
+//            // put bla bla when people can rest
+//            if (isHistory && timeSlotId < AFTER_SATURDAY_LUNCH) {
+//                loss += 10000000;
+//            }
 
             // at least one intermediate
             int s = timeSlot[CLASSROOM_ONE_ID];
@@ -1035,9 +1064,7 @@ public class Main {
                 loss += 10000000;
             }
 
-            if (!isClassThreeSalsa && timeSlot[CLASSROOM_ONE_ID] == SKANDER_MUSIC && timeSlot[CLASSROOM_THREE_ID] == REGGAE) {
-                loss += 10000000;
-            }
+            // both styling needs to be together
 
 
             /* Hyperparameters for soft constraints*/
