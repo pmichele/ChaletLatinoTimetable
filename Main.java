@@ -970,6 +970,7 @@ public class Main {
         float[][][][] penalty;
 
         // implements loss = |A| + |B| + |C| - |AuBuC| + |D(AuBuC)|
+        // TODO: add a cross term between votes and interests (scenario where you can do your vote but miss your interest)
         void initLossLookup() {
             System.out.println("--------- Init penalties ------------");
             penalty = new float[TIME_SLOTS][salsaVoters.length][bachataVoters.length][discoveryVoters.length];
